@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+	    <property name="connection.driver_class">org.postgresql.Driver</property>
+	    <property name="connection.url">jdbc:postgresql://localhost:5432/sig</property>
+	    <property name="connection.username">postgres</property>
+	    <property name="connection.password">dbr1987diogo</property>
+	    <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+	    <property name="current_session_context_class">thread</property>
+	    <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+	    <property name="show_sql">false</property>
+	    <property name="hbm2ddl.auto">validate</property>
+		<property name="c3p0.acquire_increment">5</property> 	    
+	    <property name="c3p0.min_size">5</property>
+	    <property name="c3p0.max_size">50</property>
+	    <property name="c3p0.timeout">1800</property>
+		<property name="c3p0.idle_test_period">900</property>
+	    <property name="c3p0.max_statements">50</property>
+	 	<mapping class="br.com.developen.sig.orm.Address"/>
+	 	<mapping class="br.com.developen.sig.orm.AddressEdification"/>
+	 	<mapping class="br.com.developen.sig.orm.AddressEdificationSubject"/>
+	 	<mapping class="br.com.developen.sig.orm.Agency"/>
+	 	<mapping class="br.com.developen.sig.orm.City"/>
+	 	<mapping class="br.com.developen.sig.orm.Country"/>
+	 	<mapping class="br.com.developen.sig.orm.Government"/>
+	 	<mapping class="br.com.developen.sig.orm.Individual"/>
+	 	<mapping class="br.com.developen.sig.orm.Level"/>
+	 	<mapping class="br.com.developen.sig.orm.Organization"/>
+	 	<mapping class="br.com.developen.sig.orm.State"/>
+	 	<mapping class="br.com.developen.sig.orm.Subject"/>
+	 	<mapping class="br.com.developen.sig.orm.SubjectSubject"/>
+	 	<mapping class="br.com.developen.sig.orm.Token"/>
+	 	<mapping class="br.com.developen.sig.orm.User"/>
+    </session-factory>
+</hibernate-configuration>

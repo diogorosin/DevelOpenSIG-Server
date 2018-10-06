@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration debug="true" xmlns:log4j='http://jakarta.apache.org/log4j/'>
+	<appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
+		<param name="Threshold" value="INFO" />
+<!--    <param name="File" value="${catalina.base}/logs/sig.log"/>  -->
+<!--    <param name="File" value="/var/log/pocketpos-server.log"/>  -->
+        <param name="File" value="D:/server.log"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p  [%c{1}] %m %n" />
+		</layout>
+   	</appender>
+  	<root> 
+    	<priority value ="debug" /> 
+    	<appender-ref ref="fileAppender" /> 
+  	</root> 
+</log4j:configuration>

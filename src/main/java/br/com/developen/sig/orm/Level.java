@@ -1,0 +1,20 @@
+package br.com.developen.sig.orm;
+
+/*
+0 INDEFINIDO (BLOQUEADO)
+1 AGENTE
+2 SUPERVISOR
+3 GESTOR
+4 ANALISTA DE SUPORTE
+5 DESENVOLVEDOR
+ */
+public enum Level {
+
+	UNDEFINED,
+	AGENT,
+	SUPERVISOR,
+	MANAGER,
+	SUPPORT,
+	DEVELOPER;
+
+}
