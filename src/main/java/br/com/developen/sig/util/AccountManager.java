@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -12,8 +13,11 @@ import org.hibernate.Session;
 import br.com.developen.sig.exception.GovernmentNotActiveException;
 import br.com.developen.sig.exception.GovernmentNotFoundException;
 import br.com.developen.sig.exception.InvalidPasswordException;
+import br.com.developen.sig.exception.InvalidTokenException;
 import br.com.developen.sig.exception.NotFoundException;
+import br.com.developen.sig.exception.TokenExpiredException;
 import br.com.developen.sig.exception.UnauthorizedException;
+import br.com.developen.sig.exception.UserAlreadyLoggedIntoGovernmentException;
 import br.com.developen.sig.exception.UserNotActiveException;
 import br.com.developen.sig.exception.UserNotAllowedException;
 import br.com.developen.sig.exception.UserNotFoundException;
@@ -30,7 +34,7 @@ import br.com.developen.sig.orm.TokenDAO;
 import br.com.developen.sig.orm.User;
 import br.com.developen.sig.orm.UserDAO;
 
-public class AuthenticationFactory {
+public class AccountManager {
 
 	private static final String TOKEN_ALLOWED_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -85,7 +89,7 @@ public class AuthenticationFactory {
 
 			throw new InvalidPasswordException();
 
-		
+
 		Government government = new Government();
 
 		if (governmentValue > 0) {
@@ -135,7 +139,7 @@ public class AuthenticationFactory {
 			throw new GovernmentNotActiveException();
 
 		SubjectSubjectDAO subjectSubjectDAO = new SubjectSubjectDAO(session);
-		
+
 		SubjectSubjectPK subjectSubjectPk = new SubjectSubjectPK();
 
 		subjectSubjectPk.setParent(government);
@@ -188,5 +192,83 @@ public class AuthenticationFactory {
 		return token;
 
 	}
+
+
+	public static final Token changeGovernment(
+			Session session,
+			String tokenValue,
+			Integer governmentValue) 
+					throws 
+					InvalidTokenException, 
+					UserNotAllowedException, 
+					TokenExpiredException, 
+					UserNotActiveException, 
+					GovernmentNotFoundException, 
+					GovernmentNotActiveException, 
+					UserAlreadyLoggedIntoGovernmentException, 
+					UserNotLinkedOnGovernmentException {
+
+		if (tokenValue == null) 
+
+			tokenValue = new String();
+
+		if (governmentValue == null)
+
+			governmentValue = new Integer(0);
+		
+		Token token = new TokenDAO(session).retrieve(tokenValue);
+
+		if (token == null)
+
+			throw new InvalidTokenException();
+
+		if (token.getExpire().before(new Date()))
+
+			throw new TokenExpiredException();
+
+		User user = (User) token.getSubjectSubject().getIdentifier().getChild();
+
+		if (!user.getActive())
+
+			throw new UserNotActiveException();
+
+		Government government = new GovernmentDAO(session).retrieve(governmentValue);
+
+		if (government == null)
+
+			throw new GovernmentNotFoundException();
+
+		if (!government.getActive())
+
+			throw new GovernmentNotActiveException();
+
+		if (token.getSubjectSubject().getIdentifier().getParent().equals(government))
+
+			throw new UserAlreadyLoggedIntoGovernmentException();
+
+		SubjectSubjectPK subjectSubjectPK = new SubjectSubjectPK();
+
+		subjectSubjectPK.setParent(government);
+
+		subjectSubjectPK.setChild(user);
+
+		SubjectSubject subjectSubject = new SubjectSubjectDAO(session).retrieve(subjectSubjectPK);
+
+		if (subjectSubject == null)
+
+			throw new UserNotLinkedOnGovernmentException();
+
+		if (subjectSubject.getLevel().equals(Level.UNDEFINED))
+
+			throw new UserNotAllowedException();
+
+		token.setSubjectSubject(subjectSubject);
+
+		new TokenDAO(session).update(token);
+
+		return token;
+
+	}	
+
 
 }

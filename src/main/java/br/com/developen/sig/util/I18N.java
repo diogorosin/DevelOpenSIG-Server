@@ -17,6 +17,7 @@ public class I18N {
 	public static final String USER_NOT_FOUND = "userNotFound";
 	public static final String USER_NOT_ACTIVE = "userNotActive";
 	public static final String USER_NOT_ALLOWED = "userNotAllowed";
+	public static final String USER_ALREADY_LOGGED_INTO_GOVERNMENT = "userAlreadyLoggedIntoGovernment";
 	public static final String GOVERNMENT_NOT_FOUND = "governmentNotFound";
 	public static final String GOVERNMENT_NOT_ACTIVE = "governmentNotActive";	
 	public static final String INVALID_PASSWORD = "invalidPassword";
