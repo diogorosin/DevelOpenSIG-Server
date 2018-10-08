@@ -1,9 +1,16 @@
 package br.com.developen.sig.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -20,18 +27,22 @@ import br.com.developen.sig.bean.UserBean001;
 import br.com.developen.sig.exception.NotFoundException;
 import br.com.developen.sig.exception.UnauthorizedException;
 import br.com.developen.sig.orm.Government;
+import br.com.developen.sig.orm.Level;
+import br.com.developen.sig.orm.SubjectSubject;
 import br.com.developen.sig.orm.Token;
+import br.com.developen.sig.orm.TokenDAO;
 import br.com.developen.sig.orm.User;
 import br.com.developen.sig.util.AuthenticationFactory;
 import br.com.developen.sig.util.HibernateUtil;
 import br.com.developen.sig.util.I18N;
 
-@Path("/authentication")
-public class AuthenticationEndPoint {
+@Path("/account")
+public class AccountEndPoint {
 
 	static Logger log = LogManager.getRootLogger();	
 
 	@POST
+	@Path("/authenticate")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response authenticate(CredentialBean001 credential) {
@@ -59,7 +70,7 @@ public class AuthenticationEndPoint {
 					getIdentifier().
 					getChild();
 
-			log.info(AuthenticationEndPoint.class.getSimpleName() + 
+			log.info(AccountEndPoint.class.getSimpleName() + 
 					": Usuario " +
 					user.toString() +
 					" efetuou login no Orgao " + 
@@ -97,8 +108,6 @@ public class AuthenticationEndPoint {
 			
 			userBean.setGender(user.getGender());
 			
-			userBean.setLevel(token.getSubjectSubject().getLevel().ordinal());
-			
 			userBean.setLogin(user.getLogin());
 			
 			userBean.setMotherName(user.getMotherName());
@@ -113,6 +122,8 @@ public class AuthenticationEndPoint {
 			TokenBean001 tokenBean = new TokenBean001();
 
 			tokenBean.setIdentifier(token.getIdentifier());
+
+			tokenBean.setLevel(token.getSubjectSubject().getLevel().ordinal());			
 
 			tokenBean.setGovernment(governmentBean);
 
@@ -149,7 +160,7 @@ public class AuthenticationEndPoint {
 
 				session.getTransaction().rollback();
 
-			log.error(AuthenticationEndPoint.class.getSimpleName() + ": " + 
+			log.error(AccountEndPoint.class.getSimpleName() + ": " + 
 					e.getMessage(), 
 					e.getCause());
 
@@ -163,6 +174,61 @@ public class AuthenticationEndPoint {
 
 		}
 
+	}
+
+
+	@GET
+	@Path("/government")
+	@Authentication(level=Level.AGENT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response government(@Context HttpServletRequest request){
+
+		//BUSCA O TOKEN NO CABECALHO DA REQUISICAO
+		//AQUI O TOKEN JA FOI VALIDADO PELO FILTRO @Authentication
+		String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+
+		String tokenIdentifier = authorizationHeader.substring("Bearer".length()).trim();
+
+		//BUSCA O USUARIO
+		Session session = HibernateUtil.getSessionFactory().openSession();		
+
+		TokenDAO tokenDAO = new TokenDAO(session);
+
+		Token token = tokenDAO.retrieve(tokenIdentifier);
+
+		User user = (User) token.getSubjectSubject().getIdentifier().getChild();
+
+		//CRIA A LISTA DE ORGAOS PUBLICOS DO USUARIO
+		List<GovernmentBean001> governmentBeans = new ArrayList<GovernmentBean001>();
+
+		//PERCORRE AS ENTIDADES DO TIPO PAI DO USUARIO
+		for (SubjectSubject subjectSubject : user.getParents()){
+
+			//SE A ENTIDADE PAI E DO TIPO ORGAO PUBLICO...			
+			if (subjectSubject.getIdentifier().getParent() instanceof Government) {
+
+				Government government = (Government) subjectSubject.getIdentifier().getParent(); 
+
+				GovernmentBean001 governmentBean = new GovernmentBean001();
+
+				governmentBean.setIdentifier(government.getIdentifier());
+
+				governmentBean.setActive(government.getActive());
+
+				governmentBean.setDenomination(government.getDenomination());
+
+				governmentBean.setFancyName(government.getFancyName());
+
+				governmentBeans.add(governmentBean);
+
+			}
+
+		}
+
+		return Response.status(Response.Status.OK).
+				entity(governmentBeans).
+				build();
+		
 	}
 
 }

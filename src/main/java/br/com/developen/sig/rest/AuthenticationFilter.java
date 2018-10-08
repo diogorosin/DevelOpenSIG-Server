@@ -55,7 +55,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 		session.beginTransaction();
 
 		try {
-
+			
 			//BUSCA O TOKEN NO CABECALHO DA REQUISICAO
 			String authorizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
 

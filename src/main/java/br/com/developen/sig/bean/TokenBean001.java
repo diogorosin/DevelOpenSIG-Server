@@ -6,7 +6,9 @@ public class TokenBean001 {
 	private String identifier;
 	
 	private GovernmentBean001 government;
-	
+
+	private Integer level;
+
 	private UserBean001 user;
 
 	public String getIdentifier() {
@@ -42,6 +44,18 @@ public class TokenBean001 {
 	public void setUser(UserBean001 user) {
 
 		this.user = user;
+
+	}
+
+	public Integer getLevel() {
+
+		return level;
+
+	}
+
+	public void setLevel(Integer level) {
+
+		this.level = level;
 
 	}
 

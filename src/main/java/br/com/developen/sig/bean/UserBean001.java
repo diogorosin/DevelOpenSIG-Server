@@ -7,7 +7,6 @@ public class UserBean001 extends IndividualBean001{
 
 	private String password;
 	
-	private Integer level;
 
 	public String getLogin() {
 
@@ -33,16 +32,4 @@ public class UserBean001 extends IndividualBean001{
 
 	}
 	
-	public Integer getLevel() {
-
-		return level;
-
-	}
-
-	public void setLevel(Integer level) {
-
-		this.level = level;
-
-	}
-
 }
