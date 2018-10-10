@@ -1,14 +1,18 @@
 package br.com.developen.sig.orm;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -42,8 +46,8 @@ public class Address implements Serializable{
 	@Column(name="\"postalCode\"", nullable=true)
 	private Integer postalCode;
 
-	@ManyToOne
-	@JoinColumn(name="city", nullable=true)
+	@ManyToOne(optional=false)
+	@JoinColumn(name="city", nullable=false)
 	private City city;
 
 	@Column(name="\"latitude\"", nullable=false)	
@@ -51,6 +55,13 @@ public class Address implements Serializable{
 
 	@Column(name="\"longitude\"", nullable=false)
 	private Double longitude;
+	
+	@OneToMany(
+			fetch=FetchType.LAZY,
+			mappedBy="identifier.address", 
+			cascade={CascadeType.ALL}, 
+			orphanRemoval=true)
+	private List<AddressEdification> edifications;
 
 	public Integer getIdentifier() {
 
@@ -158,6 +169,18 @@ public class Address implements Serializable{
 
 		this.longitude = longitude;
 
+	}
+
+	public List<AddressEdification> getEdifications() {
+		
+		return edifications;
+		
+	}
+
+	public void setEdifications(List<AddressEdification> edifications) {
+		
+		this.edifications = edifications;
+		
 	}
 
 	public int hashCode() {

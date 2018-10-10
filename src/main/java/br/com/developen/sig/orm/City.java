@@ -1,14 +1,20 @@
 package br.com.developen.sig.orm;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,9 +22,17 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="\"City\"")
+@NamedQueries({
+	@NamedQuery(
+			name = City.FIND_ALL,
+			query = "FROM City C"
+	)
+})
 public class City implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+
+	public static final String FIND_ALL = "City.findAll";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -30,9 +44,16 @@ public class City implements Serializable{
 	private String denomination;
 
 	@NotNull
-	@ManyToOne
-	@JoinColumn(name="state")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="state", nullable=false)
 	private State state;
+
+	@OneToMany(
+			fetch=FetchType.LAZY,
+			mappedBy="city", 
+			cascade={CascadeType.ALL}, 
+			orphanRemoval=true)
+	private List<Address> addresses;
 
 	public Integer getIdentifier() {
 
@@ -68,6 +89,18 @@ public class City implements Serializable{
 		
 		this.state = state;
 		
+	}
+
+	public List<Address> getAddresses() {
+		
+		return addresses;
+		
+	}
+
+	public void setAddresses(List<Address> addresses) {
+
+		this.addresses = addresses;
+
 	}
 
 	@Override

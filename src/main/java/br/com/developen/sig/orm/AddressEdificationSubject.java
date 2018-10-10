@@ -31,11 +31,11 @@ public class AddressEdificationSubject implements Serializable {
 	private Date to;
 
 	@ManyToOne(optional=false)
-	@JoinColumn(name="verifiedBy", nullable=false)
+	@JoinColumn(name="\"verifiedBy\"", nullable=false)
 	private User verifiedBy;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false)
+	@Column(name="\"verifiedAt\"", nullable = false)
 	private Date verifiedAt;
 
 	public AddressEdificationSubjectPK getIdentifier() {

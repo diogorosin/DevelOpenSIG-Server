@@ -1,9 +1,13 @@
 package br.com.developen.sig.orm;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -16,6 +20,13 @@ public class AddressEdification implements Serializable {
 	@EmbeddedId
 	private AddressEdificationPK identifier;
 
+	@OneToMany(
+			fetch=FetchType.LAZY,
+			mappedBy="identifier.addressEdification",
+			cascade={CascadeType.ALL}, 
+			orphanRemoval=true)
+	private List<AddressEdificationSubject> subjects;
+
 	public AddressEdificationPK getIdentifier() {
 		
 		return identifier;
@@ -23,8 +34,20 @@ public class AddressEdification implements Serializable {
 	}
 
 	public void setIdentifier(AddressEdificationPK identifier) {
-		
+
 		this.identifier = identifier;
+
+	}
+
+	public List<AddressEdificationSubject> getSubjects() {
+		
+		return subjects;
+		
+	}
+
+	public void setSubjects(List<AddressEdificationSubject> subjects) {
+
+		this.subjects = subjects;
 
 	}
 

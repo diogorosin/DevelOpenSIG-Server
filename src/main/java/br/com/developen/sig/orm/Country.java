@@ -7,15 +7,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="\"Country\"")
+@NamedQueries({
+	@NamedQuery(
+			name = Country.FIND_ALL,
+			query = "FROM Country C"
+	)
+})
 public class Country implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	public static final String FIND_ALL = "Country.findAll";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

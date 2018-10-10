@@ -7,15 +7,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="\"Agency\"")
+@NamedQueries({
+	@NamedQuery(
+			name = Agency.FIND_ALL,
+			query = "FROM Agency A"
+	)
+})
 public class Agency implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	public static final String FIND_ALL = "Agency.findAll";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -67,7 +77,6 @@ public class Agency implements Serializable {
 
 	}
 
-	@Override
 	public int hashCode() {
 
 		final int prime = 31;
@@ -77,7 +86,6 @@ public class Agency implements Serializable {
 
 	}
 
-	@Override
 	public boolean equals(Object obj) {
 
 		if (this == obj)

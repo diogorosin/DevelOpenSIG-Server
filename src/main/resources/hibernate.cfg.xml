@@ -26,6 +26,7 @@
 	 	<mapping class="br.com.developen.sig.orm.City"/>
 	 	<mapping class="br.com.developen.sig.orm.Country"/>
 	 	<mapping class="br.com.developen.sig.orm.Government"/>
+	 	<mapping class="br.com.developen.sig.orm.GovernmentCity"/>
 	 	<mapping class="br.com.developen.sig.orm.Individual"/>
 	 	<mapping class="br.com.developen.sig.orm.Level"/>
 	 	<mapping class="br.com.developen.sig.orm.Organization"/>

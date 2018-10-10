@@ -5,7 +5,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -208,29 +207,13 @@ public class AccountManager {
 					UserAlreadyLoggedIntoGovernmentException, 
 					UserNotLinkedOnGovernmentException {
 
-		if (tokenValue == null) 
+		Token token = new TokenDAO(session).retrieve(tokenValue);
 
-			tokenValue = new String();
+		User user = (User) token.getSubjectSubject().getIdentifier().getChild();
 
 		if (governmentValue == null)
 
 			governmentValue = new Integer(0);
-		
-		Token token = new TokenDAO(session).retrieve(tokenValue);
-
-		if (token == null)
-
-			throw new InvalidTokenException();
-
-		if (token.getExpire().before(new Date()))
-
-			throw new TokenExpiredException();
-
-		User user = (User) token.getSubjectSubject().getIdentifier().getChild();
-
-		if (!user.getActive())
-
-			throw new UserNotActiveException();
 
 		Government government = new GovernmentDAO(session).retrieve(governmentValue);
 
