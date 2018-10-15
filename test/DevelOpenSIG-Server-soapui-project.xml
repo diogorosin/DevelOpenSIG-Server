@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="f39f325d-3cf0-4d88-b2aa-93f8dbf0c50f" activeEnvironment="Default" name="Project 1" resourceRoot="" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="e6ca0f8b-9985-4179-8883-23f47440ef7e" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost:8080" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="Authenticate" path="/PocketPOS-Server/rest/account/authenticate" id="87cdd011-3aa1-452e-b3b5-853f2b49f79f"><con:settings/><con:parameters/><con:method name="Authenticate 1" id="a63c352a-595e-490f-ac4f-43ae52b12785" method="POST"><con:settings/><con:parameters/><con:request name="Request 1" id="c0f92f44-d524-4647-95ec-582eb1249404" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080</con:endpoint><con:request>{
+
+	"login":"diogorosin@gmail.com",
+	"password": "admin",
+	"government": 1
+
+}
+</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

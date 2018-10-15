@@ -1,0 +1,1 @@
+--\i views/SubjectView.sql

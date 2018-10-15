@@ -60,7 +60,7 @@ public class AccountManager {
 
 		if (governmentValue == null)
 
-			governmentValue = new Integer(0);
+			governmentValue = Integer.valueOf(0);
 
 		User user = new UserDAO(session).retrieveByLogin(loginValue);
 
@@ -213,7 +213,7 @@ public class AccountManager {
 
 		if (governmentValue == null)
 
-			governmentValue = new Integer(0);
+			governmentValue = Integer.valueOf(0);
 
 		Government government = new GovernmentDAO(session).retrieve(governmentValue);
 

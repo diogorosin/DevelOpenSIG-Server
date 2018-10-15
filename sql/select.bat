@@ -1,0 +1,1 @@
+"c:\Program Files\PostgreSQL\10\bin\psql.exe" -U postgres -d sig
