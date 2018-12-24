@@ -4,7 +4,11 @@ public class AddressEdificationBean001 {
 
 	private Integer address;
 
-	private String edification;
+	private Integer edification;
+	
+	private Integer type;
+	
+	private String reference;
 
 	public Integer getAddress() {
 
@@ -18,30 +22,54 @@ public class AddressEdificationBean001 {
 		
 	}
 
-	public String getEdification() {
-		
+	public Integer getEdification() {
+
 		return edification;
-		
+
 	}
 
-	public void setEdification(String edification) {
-		
+	public void setEdification(Integer edification) {
+
 		this.edification = edification;
-		
+
+	}
+
+	public Integer getType() {
+
+		return type;
+
+	}
+
+	public void setType(Integer type) {
+
+		this.type = type;
+
+	}
+
+	public String getReference() {
+
+		return reference;
+
+	}
+
+	public void setReference(String reference) {
+
+		this.reference = reference;
+
 	}
 
 	public int hashCode() {
-		
+
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((edification == null) ? 0 : edification.hashCode());
 		return result;
-		
+
 	}
 
 	public boolean equals(Object obj) {
-		
+
 		if (this == obj)
 			return true;
 		if (obj == null)

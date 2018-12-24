@@ -18,7 +18,7 @@ import org.hibernate.Session;
 
 import br.com.developen.sig.orm.Address;
 import br.com.developen.sig.orm.AddressEdification;
-import br.com.developen.sig.orm.AddressEdificationSubject;
+import br.com.developen.sig.orm.AddressEdificationDweller;
 import br.com.developen.sig.orm.Agency;
 import br.com.developen.sig.orm.AgencyDAO;
 import br.com.developen.sig.orm.City;
@@ -73,7 +73,7 @@ public class DatasetEndPoint {
 
 		List<AddressEdification> addressesEdifications = new ArrayList<>();
 
-		List<AddressEdificationSubject> addressesEdificationsSubjects = new ArrayList<>();
+		List<AddressEdificationDweller> addressesEdificationsDwellers = new ArrayList<>();
 
 
 		for (GovernmentCity governmentCity : ((Government) token.
@@ -93,11 +93,11 @@ public class DatasetEndPoint {
 
 					addressesEdifications.add(addressEdification);
 
-					for (AddressEdificationSubject addressEdificationSubject : addressEdification.getSubjects()) {
+					for (AddressEdificationDweller addressEdificationDweller : addressEdification.getDwellers()) {
 
-						addressesEdificationsSubjects.add(addressEdificationSubject);
+						addressesEdificationsDwellers.add(addressEdificationDweller);
 
-						Subject subject = addressEdificationSubject.getIdentifier().getSubject();
+						Subject subject = addressEdificationDweller.getSubject();
 
 						if (!subjects.contains(subject))
 
@@ -121,7 +121,7 @@ public class DatasetEndPoint {
 						withCities(cities).
 						withAddresses(addresses).
 						withAddressesEdifications(addressesEdifications).
-						withAddressesEdificationsSubjects(addressesEdificationsSubjects).
+						withAddressesEdificationsDwellers(addressesEdificationsDwellers).
 						build()).
 				build();
 

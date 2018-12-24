@@ -14,13 +14,17 @@ import javax.persistence.TemporalType;
 
 
 @Entity
-@Table(name="\"AddressEdificationSubject\"")
-public class AddressEdificationSubject implements Serializable {
+@Table(name="\"AddressEdificationDweller\"")
+public class AddressEdificationDweller implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private AddressEdificationSubjectPK identifier;
+	private AddressEdificationDwellerPK identifier;
+
+	@ManyToOne(optional=false)
+	@JoinColumn(name="subject", nullable=false)
+	private Subject subject;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="from", nullable = false)
@@ -38,15 +42,27 @@ public class AddressEdificationSubject implements Serializable {
 	@Column(name="\"verifiedAt\"", nullable = false)
 	private Date verifiedAt;
 
-	public AddressEdificationSubjectPK getIdentifier() {
+	public AddressEdificationDwellerPK getIdentifier() {
 
 		return identifier;
 
 	}
 
-	public void setIdentifier(AddressEdificationSubjectPK identifier) {
+	public void setIdentifier(AddressEdificationDwellerPK identifier) {
 
 		this.identifier = identifier;
+
+	}
+
+	public Subject getSubject() {
+
+		return subject;
+
+	}
+
+	public void setSubject(Subject subject) {
+
+		this.subject = subject;
 
 	}
 
@@ -115,7 +131,7 @@ public class AddressEdificationSubject implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AddressEdificationSubject other = (AddressEdificationSubject) obj;
+		AddressEdificationDweller other = (AddressEdificationDweller) obj;
 		if (identifier == null) {
 			if (other.identifier != null)
 				return false;

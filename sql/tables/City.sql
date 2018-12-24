@@ -1,6 +1,6 @@
 CREATE TABLE "City" (
 
-	"identifier" INTEGER DEFAULT NEXTVAL('CitySequence') NOT NULL,
+	"identifier" INTEGER NOT NULL,
 	
 	"denomination" VARCHAR(40) NOT NULL,
 	

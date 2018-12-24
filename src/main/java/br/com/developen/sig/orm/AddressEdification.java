@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,12 +21,18 @@ public class AddressEdification implements Serializable {
 	@EmbeddedId
 	private AddressEdificationPK identifier;
 
+	@Column(name="type", nullable = false)	
+	private Integer type;
+
+	@Column(name="reference", nullable = true)	
+	private String reference;
+
 	@OneToMany(
 			fetch=FetchType.LAZY,
 			mappedBy="identifier.addressEdification",
 			cascade={CascadeType.ALL}, 
 			orphanRemoval=true)
-	private List<AddressEdificationSubject> subjects;
+	private List<AddressEdificationDweller> dwellers;
 
 	public AddressEdificationPK getIdentifier() {
 		
@@ -39,15 +46,39 @@ public class AddressEdification implements Serializable {
 
 	}
 
-	public List<AddressEdificationSubject> getSubjects() {
+	public List<AddressEdificationDweller> getDwellers() {
 		
-		return subjects;
+		return dwellers;
 		
 	}
 
-	public void setSubjects(List<AddressEdificationSubject> subjects) {
+	public void setDwellers(List<AddressEdificationDweller> dwellers) {
 
-		this.subjects = subjects;
+		this.dwellers = dwellers;
+
+	}
+
+	public Integer getType() {
+		
+		return type;
+		
+	}
+
+	public void setType(Integer type) {
+
+		this.type = type;
+
+	}
+
+	public String getReference() {
+
+		return reference;
+
+	}
+
+	public void setReference(String reference) {
+
+		this.reference = reference;
 
 	}
 

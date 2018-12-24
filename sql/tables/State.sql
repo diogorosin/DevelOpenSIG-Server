@@ -1,6 +1,6 @@
 CREATE TABLE "State" (
 
-	"identifier" INTEGER DEFAULT NEXTVAL('StateSequence') NOT NULL,
+	"identifier" INTEGER NOT NULL,
      
 	"denomination" VARCHAR(20) NOT NULL,
 	

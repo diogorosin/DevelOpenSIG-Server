@@ -1,6 +1,6 @@
 \i tables/Address.sql;
 \i tables/AddressEdification.sql;
-\i tables/AddressEdificationSubject.sql;
+\i tables/AddressEdificationDweller.sql;
 \i tables/Agency.sql;
 \i tables/City.sql;
 \i tables/Country.sql;

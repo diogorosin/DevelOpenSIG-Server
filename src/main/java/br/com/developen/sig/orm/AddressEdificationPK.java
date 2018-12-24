@@ -18,7 +18,7 @@ public class AddressEdificationPK implements Serializable{
 	private Address address;
 
 	@Column(name="edification", nullable=false)
-	private String edification;
+	private Integer edification;
 
 	public Address getAddress() {
 		
@@ -32,13 +32,13 @@ public class AddressEdificationPK implements Serializable{
 		
 	}
 
-	public String getEdification() {
+	public Integer getEdification() {
 		
 		return edification;
 		
 	}
 
-	public void setEdification(String edification) {
+	public void setEdification(Integer edification) {
 		
 		this.edification = edification;
 

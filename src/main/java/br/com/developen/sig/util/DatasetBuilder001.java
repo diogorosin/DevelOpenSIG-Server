@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.developen.sig.bean.AddressBean001;
 import br.com.developen.sig.bean.AddressEdificationBean001;
-import br.com.developen.sig.bean.AddressEdificationSubjectBean001;
+import br.com.developen.sig.bean.AddressEdificationDwellerBean001;
 import br.com.developen.sig.bean.AgencyBean001;
 import br.com.developen.sig.bean.CityBean001;
 import br.com.developen.sig.bean.CountryBean001;
@@ -15,7 +15,7 @@ import br.com.developen.sig.bean.StateBean001;
 import br.com.developen.sig.bean.SubjectBean001;
 import br.com.developen.sig.orm.Address;
 import br.com.developen.sig.orm.AddressEdification;
-import br.com.developen.sig.orm.AddressEdificationSubject;
+import br.com.developen.sig.orm.AddressEdificationDweller;
 import br.com.developen.sig.orm.Agency;
 import br.com.developen.sig.orm.City;
 import br.com.developen.sig.orm.Country;
@@ -211,19 +211,19 @@ public class DatasetBuilder001 implements DatasetBuilder {
 		
 	}
 
-	public DatasetBuilder withAddressesEdificationsSubjects(List<AddressEdificationSubject> addressesEdificationsSubjects) {
+	public DatasetBuilder withAddressesEdificationsDwellers(List<AddressEdificationDweller> addressesEdificationsDwellers) {
 
-		getDatasetBean().getAddressesEdificationsSubjects().clear();
+		getDatasetBean().getAddressesEdificationsDwellers().clear();
 
-		if (addressesEdificationsSubjects != null) {
+		if (addressesEdificationsDwellers != null) {
 
-			for (AddressEdificationSubject addressEdificationSubject : addressesEdificationsSubjects) {
+			for (AddressEdificationDweller addressEdificationDweller : addressesEdificationsDwellers) {
 
-				AddressEdificationSubjectBean001 addressEdificationSubjectBean = new AddressEdificationSubjectBean001();
+				AddressEdificationDwellerBean001 addressEdificationDwellerBean = new AddressEdificationDwellerBean001();
 
-				populateAddressEdificationSubject(addressEdificationSubjectBean, addressEdificationSubject);
+				populateAddressEdificationDweller(addressEdificationDwellerBean, addressEdificationDweller);
 
-				getDatasetBean().getAddressesEdificationsSubjects().add(addressEdificationSubjectBean);
+				getDatasetBean().getAddressesEdificationsDwellers().add(addressEdificationDwellerBean);
 
 			}			
 
@@ -352,39 +352,48 @@ public class DatasetBuilder001 implements DatasetBuilder {
 				getIdentifier().
 				getEdification());
 
+		addressEdificationBean.setType(addressEdification.
+				getType());
+
+		addressEdificationBean.setReference(addressEdification.
+				getReference());
+
 	}
 
-	private void populateAddressEdificationSubject(AddressEdificationSubjectBean001 addressEdificationSubjectBean, AddressEdificationSubject addressEdificationSubject){
+	private void populateAddressEdificationDweller(AddressEdificationDwellerBean001 addressEdificationDwellerBean, AddressEdificationDweller addressEdificationDweller){
 
-		addressEdificationSubjectBean.setAddress(addressEdificationSubject.
+		addressEdificationDwellerBean.setAddress(addressEdificationDweller.
 				getIdentifier().
 				getAddressEdification().
 				getIdentifier().
 				getAddress().
 				getIdentifier());
 
-		addressEdificationSubjectBean.setEdification(addressEdificationSubject.
+		addressEdificationDwellerBean.setEdification(addressEdificationDweller.
 				getIdentifier().
 				getAddressEdification().
 				getIdentifier().
 				getEdification());
 
-		addressEdificationSubjectBean.setSubject(addressEdificationSubject.
+		addressEdificationDwellerBean.setDweller(addressEdificationDweller.
 				getIdentifier().
+				getDweller());
+		
+		addressEdificationDwellerBean.setSubject(addressEdificationDweller.
 				getSubject().
 				getIdentifier());
 		
-		addressEdificationSubjectBean.setFrom(addressEdificationSubject.
+		addressEdificationDwellerBean.setFrom(addressEdificationDweller.
 				getFrom());
 		
-		addressEdificationSubjectBean.setTo(addressEdificationSubject.
+		addressEdificationDwellerBean.setTo(addressEdificationDweller.
 				getTo());
 		
-		addressEdificationSubjectBean.setVerifiedBy(addressEdificationSubject.
+		addressEdificationDwellerBean.setVerifiedBy(addressEdificationDweller.
 				getVerifiedBy().
 				getIdentifier());
 		
-		addressEdificationSubjectBean.setVerifiedAt(addressEdificationSubject.
+		addressEdificationDwellerBean.setVerifiedAt(addressEdificationDweller.
 				getVerifiedAt());
 
 	}

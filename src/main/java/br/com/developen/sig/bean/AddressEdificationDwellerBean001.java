@@ -2,12 +2,14 @@ package br.com.developen.sig.bean;
 
 import java.util.Date;
 
-public class AddressEdificationSubjectBean001 {
+public class AddressEdificationDwellerBean001 {
 
 	private Integer address;
 
-	private String edification;
+	private Integer edification;
 
+	private Integer dweller;
+	
 	private Integer subject;
 
 	private Date from;
@@ -30,16 +32,28 @@ public class AddressEdificationSubjectBean001 {
 		
 	}
 
-	public String getEdification() {
+	public Integer getEdification() {
 		
 		return edification;
 		
 	}
 
-	public void setEdification(String edification) {
+	public void setEdification(Integer edification) {
 		
 		this.edification = edification;
 		
+	}
+
+	public Integer getDweller() {
+		
+		return dweller;
+		
+	}
+
+	public void setDweller(Integer dweller) {
+
+		this.dweller = dweller;
+
 	}
 
 	public Integer getSubject() {
@@ -107,10 +121,10 @@ public class AddressEdificationSubjectBean001 {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((dweller == null) ? 0 : dweller.hashCode());
 		result = prime * result + ((edification == null) ? 0 : edification.hashCode());
-		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		return result;
-		
+
 	}
 
 	public boolean equals(Object obj) {
@@ -121,21 +135,21 @@ public class AddressEdificationSubjectBean001 {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AddressEdificationSubjectBean001 other = (AddressEdificationSubjectBean001) obj;
+		AddressEdificationDwellerBean001 other = (AddressEdificationDwellerBean001) obj;
 		if (address == null) {
 			if (other.address != null)
 				return false;
 		} else if (!address.equals(other.address))
 			return false;
+		if (dweller == null) {
+			if (other.dweller != null)
+				return false;
+		} else if (!dweller.equals(other.dweller))
+			return false;
 		if (edification == null) {
 			if (other.edification != null)
 				return false;
 		} else if (!edification.equals(other.edification))
-			return false;
-		if (subject == null) {
-			if (other.subject != null)
-				return false;
-		} else if (!subject.equals(other.subject))
 			return false;
 		return true;
 

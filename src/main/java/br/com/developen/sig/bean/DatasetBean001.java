@@ -21,7 +21,7 @@ public class DatasetBean001 implements DatasetBean {
 
 	private List<AddressEdificationBean001> addressesEdifications;
 
-	private List<AddressEdificationSubjectBean001> addressesEdificationsSubjects;
+	private List<AddressEdificationDwellerBean001> addressesEdificationsDwellers;
 
 	public List<AgencyBean001> getAgencies() {
 
@@ -151,19 +151,19 @@ public class DatasetBean001 implements DatasetBean {
 
 	}
 
-	public List<AddressEdificationSubjectBean001> getAddressesEdificationsSubjects() {
+	public List<AddressEdificationDwellerBean001> getAddressesEdificationsDwellers() {
 
-		if (addressesEdificationsSubjects == null)
+		if (addressesEdificationsDwellers == null)
 
-			addressesEdificationsSubjects = new ArrayList<AddressEdificationSubjectBean001>();
+			addressesEdificationsDwellers = new ArrayList<AddressEdificationDwellerBean001>();
 
-		return addressesEdificationsSubjects;
+		return addressesEdificationsDwellers;
 
 	}
 
-	public void setAddressesEdificationsSubjects(List<AddressEdificationSubjectBean001> addressesEdificationsSubjects) {
+	public void setAddressesEdificationsDwellers(List<AddressEdificationDwellerBean001> addressesEdificationsDwellers) {
 
-		this.addressesEdificationsSubjects = addressesEdificationsSubjects;
+		this.addressesEdificationsDwellers = addressesEdificationsDwellers;
 
 	}
 

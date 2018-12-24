@@ -3,7 +3,7 @@ ALTER TABLE "Address" ADD CONSTRAINT "AddressPK" PRIMARY KEY("identifier");
 
 ALTER TABLE "AddressEdification" ADD CONSTRAINT "AddressEdificationPK" PRIMARY KEY("address", "edification");
 
-ALTER TABLE "AddressEdificationSubject" ADD CONSTRAINT "AddressEdificationSubjectPK" PRIMARY KEY("address", "edification", "subject");
+ALTER TABLE "AddressEdificationDweller" ADD CONSTRAINT "AddressEdificationDwellerPK" PRIMARY KEY("address", "edification", "dweller");
 
 ALTER TABLE "Agency" ADD CONSTRAINT "AgencyPK" PRIMARY KEY("identifier");
 
@@ -35,9 +35,9 @@ ALTER TABLE "Address" ADD CONSTRAINT "AddressCityFK" FOREIGN KEY("city") REFEREN
 
 ALTER TABLE "AddressEdification" ADD CONSTRAINT "AddressEdificationAddressFK" FOREIGN KEY("address") REFERENCES "Address"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
 
-ALTER TABLE "AddressEdificationSubject" ADD CONSTRAINT "AddressEdificationSubjectAddressEdificationFK" FOREIGN KEY("address", "edification") REFERENCES "AddressEdification"("address", "edification") ON DELETE RESTRICT ON UPDATE CASCADE;
-ALTER TABLE "AddressEdificationSubject" ADD CONSTRAINT "AddressEdificationSubjectSubjectFK" FOREIGN KEY("subject") REFERENCES "Subject"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
-ALTER TABLE "AddressEdificationSubject" ADD CONSTRAINT "AddressEdificationSubjectVerifiedByFK" FOREIGN KEY("verifiedBy") REFERENCES "User"("individual") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "AddressEdificationDweller" ADD CONSTRAINT "AddressEdificationDwellerAddressEdificationFK" FOREIGN KEY("address", "edification") REFERENCES "AddressEdification"("address", "edification") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "AddressEdificationDweller" ADD CONSTRAINT "AddressEdificationDwellerSubjectFK" FOREIGN KEY("subject") REFERENCES "Subject"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "AddressEdificationDweller" ADD CONSTRAINT "AddressEdificationDwellerVerifiedByFK" FOREIGN KEY("verifiedBy") REFERENCES "User"("individual") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 ALTER TABLE "City" ADD CONSTRAINT "CityStateFK" FOREIGN KEY("state") REFERENCES "State"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
 

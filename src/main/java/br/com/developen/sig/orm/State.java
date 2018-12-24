@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,7 +30,6 @@ public class State implements Serializable {
 	public static final String FIND_ALL = "State.findAll";
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer identifier;
 
 	@NotNull

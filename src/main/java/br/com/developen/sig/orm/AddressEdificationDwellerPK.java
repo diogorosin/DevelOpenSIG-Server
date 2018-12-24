@@ -2,6 +2,7 @@ package br.com.developen.sig.orm;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
@@ -9,7 +10,7 @@ import javax.persistence.ManyToOne;
 
 
 @Embeddable
-public class AddressEdificationSubjectPK implements Serializable{
+public class AddressEdificationDwellerPK implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -19,9 +20,8 @@ public class AddressEdificationSubjectPK implements Serializable{
 		@JoinColumn(name="edification", referencedColumnName="edification")})
 	private AddressEdification addressEdification;
 
-	@ManyToOne(optional=false)
-	@JoinColumn(name="subject", nullable=false)
-	private Subject subject;
+	@Column(name="dweller", nullable=false)
+	private Integer dweller;
 
 	public AddressEdification getAddressEdification() {
 		
@@ -35,15 +35,15 @@ public class AddressEdificationSubjectPK implements Serializable{
 		
 	}
 
-	public Subject getSubject() {
+	public Integer getDweller() {
 		
-		return subject;
+		return dweller;
 		
 	}
 
-	public void setSubject(Subject subject) {
-		
-		this.subject = subject;
+	public void setDweller(Integer dweller) {
+
+		this.dweller = dweller;
 
 	}
 
@@ -52,7 +52,7 @@ public class AddressEdificationSubjectPK implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((addressEdification == null) ? 0 : addressEdification.hashCode());
-		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
+		result = prime * result + ((dweller == null) ? 0 : dweller.hashCode());
 		return result;
 
 	}
@@ -65,19 +65,19 @@ public class AddressEdificationSubjectPK implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AddressEdificationSubjectPK other = (AddressEdificationSubjectPK) obj;
+		AddressEdificationDwellerPK other = (AddressEdificationDwellerPK) obj;
 		if (addressEdification == null) {
 			if (other.addressEdification != null)
 				return false;
 		} else if (!addressEdification.equals(other.addressEdification))
 			return false;
-		if (subject == null) {
-			if (other.subject != null)
+		if (dweller == null) {
+			if (other.dweller != null)
 				return false;
-		} else if (!subject.equals(other.subject))
+		} else if (!dweller.equals(other.dweller))
 			return false;
 		return true;
 
 	}
-
+	
 }

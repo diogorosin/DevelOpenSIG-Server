@@ -2,6 +2,10 @@ CREATE TABLE "AddressEdification" (
 
 	"address" INTEGER NOT NULL,
 
-	"edification" VARCHAR(10) NOT NULL
+	"edification" INTEGER NOT NULL,
+
+	"type" INTEGER NOT NULL,
+
+	"reference" VARCHAR(10)
 
 );

@@ -21,7 +21,7 @@
 	    <property name="c3p0.max_statements">50</property>
 	 	<mapping class="br.com.developen.sig.orm.Address"/>
 	 	<mapping class="br.com.developen.sig.orm.AddressEdification"/>
-	 	<mapping class="br.com.developen.sig.orm.AddressEdificationSubject"/>
+	 	<mapping class="br.com.developen.sig.orm.AddressEdificationDweller"/>
 	 	<mapping class="br.com.developen.sig.orm.Agency"/>
 	 	<mapping class="br.com.developen.sig.orm.City"/>
 	 	<mapping class="br.com.developen.sig.orm.Country"/>

@@ -1,8 +1,10 @@
-CREATE TABLE "AddressEdificationSubject" (
+CREATE TABLE "AddressEdificationDweller" (
 
 	"address" INTEGER NOT NULL,
 
-    "edification" VARCHAR(10) NOT NULL,
+    "edification" INTEGER NOT NULL,
+
+	"dweller" INTEGER NOT NULL,
 
 	"subject" INTEGER NOT NULL,
 
