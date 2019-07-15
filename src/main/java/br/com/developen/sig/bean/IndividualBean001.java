@@ -2,6 +2,8 @@ package br.com.developen.sig.bean;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class IndividualBean001 extends SubjectBean001{
 
 	private String name;
@@ -20,6 +22,7 @@ public class IndividualBean001 extends SubjectBean001{
 
 	private Integer birthPlace;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")	
 	private Date birthDate;
 
 	private String gender;
