@@ -1,3 +1,4 @@
+\i tables/Type.sql;
 \i tables/Address.sql;
 \i tables/AddressEdification.sql;
 \i tables/AddressEdificationDweller.sql;

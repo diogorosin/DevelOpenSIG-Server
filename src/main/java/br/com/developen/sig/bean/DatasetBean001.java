@@ -5,23 +5,41 @@ import java.util.List;
 
 public class DatasetBean001 implements DatasetBean {
 
+	private List<TypeBean001> types;
+
 	private List<AgencyBean001> agencies;
-	
+
 	private List<IndividualBean001> individuals;
-	
+
 	private List<OrganizationBean001> organizations;
-	
+
 	private List<CountryBean001> countries;
-	
+
 	private List<StateBean001> states;
-	
+
 	private List<CityBean001> cities;
-	
+
 	private List<AddressBean001> addresses;
 
 	private List<AddressEdificationBean001> addressesEdifications;
 
 	private List<AddressEdificationDwellerBean001> addressesEdificationsDwellers;
+
+	public List<TypeBean001> getTypes() {
+
+		if (types == null)
+
+			types = new ArrayList<TypeBean001>();
+
+		return types;
+
+	}
+
+	public void setTypes(List<TypeBean001> types) {
+
+		this.types = types;
+
+	}
 
 	public List<AgencyBean001> getAgencies() {
 

@@ -13,6 +13,7 @@ import br.com.developen.sig.bean.IndividualBean001;
 import br.com.developen.sig.bean.OrganizationBean001;
 import br.com.developen.sig.bean.StateBean001;
 import br.com.developen.sig.bean.SubjectBean001;
+import br.com.developen.sig.bean.TypeBean001;
 import br.com.developen.sig.orm.Address;
 import br.com.developen.sig.orm.AddressEdification;
 import br.com.developen.sig.orm.AddressEdificationDweller;
@@ -23,11 +24,12 @@ import br.com.developen.sig.orm.Individual;
 import br.com.developen.sig.orm.Organization;
 import br.com.developen.sig.orm.State;
 import br.com.developen.sig.orm.Subject;
+import br.com.developen.sig.orm.Type;
 
 public class DatasetBuilder001 implements DatasetBuilder {
 
 	private DatasetBean001 datasetBean;
-
+	
 	private DatasetBean001 getDatasetBean() {
 
 		if (datasetBean==null)
@@ -37,6 +39,29 @@ public class DatasetBuilder001 implements DatasetBuilder {
 		return datasetBean;
 
 	}
+	
+	public DatasetBuilder withTypes(List<Type> types) {
+
+		getDatasetBean().getTypes().clear();
+
+		if (types != null) {
+
+			for (Type type : types) {
+
+				TypeBean001 typeBean = new TypeBean001();
+
+				populateType(typeBean, type);
+
+				getDatasetBean().getTypes().add(typeBean);
+
+			}			
+
+		}
+
+		return this;
+
+	}
+	
 
 	public DatasetBuilder withAgencies(List<Agency> agencies) {
 
@@ -233,6 +258,14 @@ public class DatasetBuilder001 implements DatasetBuilder {
 
 	}
 
+	private void populateType(TypeBean001 typeBean, Type type){
+
+		typeBean.setIdentifier(type.getIdentifier());
+
+		typeBean.setDenomination(type.getDenomination());
+
+	}
+
 	private void populateAgencies(AgencyBean001 agencyBean, Agency agency){
 
 		agencyBean.setIdentifier(agency.getIdentifier());
@@ -353,7 +386,8 @@ public class DatasetBuilder001 implements DatasetBuilder {
 				getEdification());
 
 		addressEdificationBean.setType(addressEdification.
-				getType());
+				getType().
+				getIdentifier());
 
 		addressEdificationBean.setReference(addressEdification.
 				getReference());

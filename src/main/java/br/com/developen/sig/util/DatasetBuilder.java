@@ -11,10 +11,13 @@ import br.com.developen.sig.orm.City;
 import br.com.developen.sig.orm.Country;
 import br.com.developen.sig.orm.State;
 import br.com.developen.sig.orm.Subject;
+import br.com.developen.sig.orm.Type;
 
 
 public abstract interface DatasetBuilder {
 
+	public abstract DatasetBuilder withTypes(List<Type> types);
+	
 	public abstract DatasetBuilder withAgencies(List<Agency> agencies);	
 
 	public abstract DatasetBuilder withSubjects(List<Subject> subjects);

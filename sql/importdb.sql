@@ -20,6 +20,7 @@
 \i script/CreateTables.sql;
 
 /* POPULA */
+\i data/InsertType.sql;
 \i data/InsertAgency.sql;
 \i data/InsertCity.sql;
 \i data/InsertCountry.sql;

@@ -33,6 +33,8 @@ import br.com.developen.sig.orm.StateDAO;
 import br.com.developen.sig.orm.Subject;
 import br.com.developen.sig.orm.Token;
 import br.com.developen.sig.orm.TokenDAO;
+import br.com.developen.sig.orm.Type;
+import br.com.developen.sig.orm.TypeDAO;
 import br.com.developen.sig.util.DatasetBuilder001;
 import br.com.developen.sig.util.HibernateUtil;
 
@@ -58,6 +60,8 @@ public class DatasetEndPoint {
 
 		Token token = tokenDAO.retrieve(tokenIdentifier);
 
+
+		List<Type> types = new TypeDAO(session).list();
 
 		List<Agency> agencies = new AgencyDAO(session).list();
 
@@ -114,6 +118,7 @@ public class DatasetEndPoint {
 
 		return Response.status(Response.Status.OK).
 				entity(new DatasetBuilder001().
+						withTypes(types).
 						withAgencies(agencies).
 						withSubjects(subjects).					
 						withCountries(countries).

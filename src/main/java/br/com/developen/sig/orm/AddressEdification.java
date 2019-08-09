@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,8 +23,9 @@ public class AddressEdification implements Serializable {
 	@EmbeddedId
 	private AddressEdificationPK identifier;
 
-	@Column(name="type", nullable = false)	
-	private Integer type;
+	@ManyToOne(optional=false)
+	@JoinColumn(name = "type")
+	private Type type;
 
 	@Column(name="reference", nullable = true)	
 	private String reference;
@@ -58,13 +61,13 @@ public class AddressEdification implements Serializable {
 
 	}
 
-	public Integer getType() {
-		
+	public Type getType() {
+
 		return type;
-		
+
 	}
 
-	public void setType(Integer type) {
+	public void setType(Type type) {
 
 		this.type = type;
 

@@ -13,7 +13,7 @@ INSERT INTO "GovernmentCity"("government", "city") VALUES (1, 4575);
 INSERT INTO "GovernmentCity"("government", "city") VALUES (1, 4675);
 INSERT INTO "GovernmentCity"("government", "city") VALUES (1, 4488);
 INSERT INTO "Address"("denomination", "number", "district", "city", "postalCode", "latitude", "longitude") VALUES ('Rua Hercílio Luz', '475', 'Progresso', 4569, 89874000, -26.757168, -53.178105);
-INSERT INTO "AddressEdification"("address", "edification", "type") VALUES (1, 1, 1);
+INSERT INTO "AddressEdification"("address", "edification", "type") VALUES (1, 1, 5);
 INSERT INTO "AddressEdificationDweller"("address", "edification", "dweller", "subject", "from", "to", "verifiedAt", "verifiedBy") VALUES (1, 1, 1, 1, NOW(), null, NOW(), 2);
 
 /* DIOGO BUZIN ROSIN */
@@ -30,7 +30,7 @@ INSERT INTO "Organization"("subject", "denomination", "fancyName") VALUES (3, 'P
 INSERT INTO "Government"("organization") VALUES (3);
 INSERT INTO "GovernmentCity"("government", "city") VALUES (3, 4569);
 INSERT INTO "Address"("denomination", "number", "district", "city", "postalCode", "latitude", "longitude") VALUES ('Avenida Euclides da Cunha', '60', 'Centro', 4569, 89874000, -26.760550, -53.174119);
-INSERT INTO "AddressEdification"("address", "edification", "type") VALUES (3, 1, 1);
+INSERT INTO "AddressEdification"("address", "edification", "type") VALUES (3, 1, 5);
 INSERT INTO "AddressEdificationDweller"("address", "edification", "dweller", "subject", "from", "to", "verifiedAt", "verifiedBy") VALUES (3, 1, 1, 3, NOW(), null, NOW(), 2);
 
 /* POLICIA x DIOGO */

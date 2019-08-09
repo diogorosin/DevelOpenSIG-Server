@@ -1,4 +1,6 @@
 /*PRIMARY KEYS*/
+ALTER TABLE "Type" ADD CONSTRAINT "TypePK" PRIMARY KEY("identifier");
+
 ALTER TABLE "Address" ADD CONSTRAINT "AddressPK" PRIMARY KEY("identifier");
 
 ALTER TABLE "AddressEdification" ADD CONSTRAINT "AddressEdificationPK" PRIMARY KEY("address", "edification");
@@ -34,6 +36,7 @@ ALTER TABLE "User" ADD CONSTRAINT "UserPK" PRIMARY KEY("individual");
 ALTER TABLE "Address" ADD CONSTRAINT "AddressCityFK" FOREIGN KEY("city") REFERENCES "City"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 ALTER TABLE "AddressEdification" ADD CONSTRAINT "AddressEdificationAddressFK" FOREIGN KEY("address") REFERENCES "Address"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "AddressEdification" ADD CONSTRAINT "AddressEdificationTypeFK" FOREIGN KEY("type") REFERENCES "Type"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 ALTER TABLE "AddressEdificationDweller" ADD CONSTRAINT "AddressEdificationDwellerAddressEdificationFK" FOREIGN KEY("address", "edification") REFERENCES "AddressEdification"("address", "edification") ON DELETE RESTRICT ON UPDATE CASCADE;
 ALTER TABLE "AddressEdificationDweller" ADD CONSTRAINT "AddressEdificationDwellerSubjectFK" FOREIGN KEY("subject") REFERENCES "Subject"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
