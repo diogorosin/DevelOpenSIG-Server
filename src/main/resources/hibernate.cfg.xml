@@ -36,5 +36,8 @@
 		<mapping class="br.com.developen.sig.orm.SubjectSubject" />
 		<mapping class="br.com.developen.sig.orm.Token" />
 		<mapping class="br.com.developen.sig.orm.User" />
+		<mapping class="br.com.developen.sig.orm.ModifiedAddress" />
+		<mapping class="br.com.developen.sig.orm.ModifiedAddressEdification" />
+		<mapping class="br.com.developen.sig.orm.ModifiedAddressEdificationDweller" />
 	</session-factory>
 </hibernate-configuration>

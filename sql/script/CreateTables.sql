@@ -14,3 +14,6 @@
 \i tables/SubjectSubject.sql;
 \i tables/Token.sql;
 \i tables/User.sql;
+\i tables/ModifiedAddress.sql;
+\i tables/ModifiedAddressEdification.sql;
+\i tables/ModifiedAddressEdificationDweller.sql;

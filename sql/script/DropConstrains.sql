@@ -34,7 +34,21 @@ ALTER TABLE IF EXISTS "Token" DROP CONSTRAINT IF EXISTS "TokenSubjectSubjectFK" 
 ALTER TABLE IF EXISTS "User" DROP CONSTRAINT IF EXISTS "UserIndividualFK" CASCADE;
 ALTER TABLE IF EXISTS "User" DROP CONSTRAINT IF EXISTS "UserLastLoggedInFK" CASCADE;
 
+ALTER TABLE IF EXISTS "ModifiedAddress" DROP CONSTRAINT IF EXISTS "ModifiedAddressCityFK" CASCADE;
+ALTER TABLE IF EXISTS "ModifiedAddress" DROP CONSTRAINT IF EXISTS "ModifiedAddressModifiedByFK" CASCADE;
+ALTER TABLE IF EXISTS "ModifiedAddress" DROP CONSTRAINT IF EXISTS "ModifiedAddressAddressFK" CASCADE;
+
+ALTER TABLE IF EXISTS "ModifiedAddressEdification" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationModifiedAddressFK" CASCADE;
+ALTER TABLE IF EXISTS "ModifiedAddressEdification" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationTypeFK" CASCADE;
+
+ALTER TABLE IF EXISTS "ModifiedAddressEdificationDweller" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationDwellerModifiedAddressEdificationFK" CASCADE;
+ALTER TABLE IF EXISTS "ModifiedAddressEdificationDweller" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationDwellerSubjectFK" CASCADE;
+ALTER TABLE IF EXISTS "ModifiedAddressEdificationDweller" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationDwellerRgAgencyFK" CASCADE;
+ALTER TABLE IF EXISTS "ModifiedAddressEdificationDweller" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationDwellerRgStateFK" CASCADE;
+ALTER TABLE IF EXISTS "ModifiedAddressEdificationDweller" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationDwellerBirthPlaceFK" CASCADE;
+
 /*PRIMARY KEYS*/
+
 ALTER TABLE IF EXISTS "Type" DROP CONSTRAINT IF EXISTS "TypePK" CASCADE;
 
 ALTER TABLE IF EXISTS "Address" DROP CONSTRAINT IF EXISTS "AddressPK" CASCADE;
@@ -66,3 +80,9 @@ ALTER TABLE IF EXISTS "SubjectSubject" DROP CONSTRAINT IF EXISTS "SubjectSubject
 ALTER TABLE IF EXISTS "Token" DROP CONSTRAINT IF EXISTS "TokenPK" CASCADE;
 
 ALTER TABLE IF EXISTS "User" DROP CONSTRAINT IF EXISTS "UserPK" CASCADE;
+
+ALTER TABLE IF EXISTS "ModifiedAddress" DROP CONSTRAINT IF EXISTS "ModifiedAddressPK" CASCADE;
+
+ALTER TABLE IF EXISTS "ModifiedAddressEdification" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationPK" CASCADE;
+
+ALTER TABLE IF EXISTS "ModifiedAddressEdificationDweller" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationDwellerPK" CASCADE;
