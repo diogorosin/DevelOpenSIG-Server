@@ -1,201 +1,161 @@
-package br.com.developen.sig.orm;
+package br.com.developen.sig.bean;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-
-@Entity
-@Table(name="\"ModifiedAddress\"")
-public class ModifiedAddress implements Serializable{
+public class ModifiedAddressBean001 implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer identifier;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="\"modifiedAt\"", nullable = false)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
 	private Date modifiedAt;
 
-	@ManyToOne(optional=false)
-	@JoinColumn(name="\"modifiedBy\"", nullable=false)
-	private User modifiedBy;
+	private Integer modifiedBy;
 
-	@ManyToOne(optional=true)
-	@JoinColumn(name="\"address\"", nullable=true)
-	private Address address;
+	private Integer address;
 
-	@Size(min=1, max=100)
-	@Column(name="\"denomination\"", nullable=true)
 	private String denomination;
 
-	@Size(min=1, max=5)	
-	@Column(name="\"number\"", nullable=true)	
-	private String number;	
+	private String number;
 
-	@Size(min=1, max=10)	
-	@Column(name="\"reference\"", nullable=true)	
 	private String reference;
 
-	@Size(min=1, max=100)	
-	@Column(name="\"district\"", nullable=true)	
 	private String district;
 
-	@Column(name="\"postalCode\"", nullable=true)
 	private Integer postalCode;
 
-	@ManyToOne(optional=false)
-	@JoinColumn(name="city", nullable=false)
-	private City city;
+	private Integer city;
 
-	@Column(name="\"latitude\"", nullable=false)	
 	private Double latitude;
 
-	@Column(name="\"longitude\"", nullable=false)
 	private Double longitude;
+
+	private Map<Integer, ModifiedAddressEdificationBean001> edifications;
 	
-	@OneToMany(
-			fetch=FetchType.LAZY,
-			mappedBy="identifier.modifiedAddress", 
-			cascade={CascadeType.ALL}, 
-			orphanRemoval=true)
-	private List<ModifiedAddressEdification> edifications;
-
 	public Integer getIdentifier() {
-
+		
 		return identifier;
-
+		
 	}
 
 	public void setIdentifier(Integer identifier) {
-
+		
 		this.identifier = identifier;
-
+		
 	}
 
 	public Date getModifiedAt() {
-		
+
 		return modifiedAt;
-		
+
 	}
 
 	public void setModifiedAt(Date modifiedAt) {
-		
+
 		this.modifiedAt = modifiedAt;
+
+	}
+
+	public Integer getModifiedBy() {
+		
+		return modifiedBy;
 		
 	}
 
-	public User getModifiedBy() {
-
-		return modifiedBy;
-
-	}
-
-	public void setModifiedBy(User modifiedBy) {
+	public void setModifiedBy(Integer modifiedBy) {
 
 		this.modifiedBy = modifiedBy;
 
 	}
 
-	public Address getAddress() {
+	public Integer getAddress() {
 
 		return address;
-		
+
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(Integer address) {
 
 		this.address = address;
 
 	}
 
 	public String getDenomination() {
-
+		
 		return denomination;
-
+		
 	}
 
 	public void setDenomination(String denomination) {
-
+		
 		this.denomination = denomination;
-
+		
 	}
 
 	public String getNumber() {
-
+		
 		return number;
-
+		
 	}
 
 	public void setNumber(String number) {
-
+		
 		this.number = number;
-
+		
 	}
 
 	public String getReference() {
-
+		
 		return reference;
-
+		
 	}
 
 	public void setReference(String reference) {
-
+		
 		this.reference = reference;
-
+		
 	}
 
 	public String getDistrict() {
-
+		
 		return district;
-
+		
 	}
 
 	public void setDistrict(String district) {
-
+		
 		this.district = district;
-
+		
 	}
 
 	public Integer getPostalCode() {
-
+		
 		return postalCode;
-
+		
 	}
 
 	public void setPostalCode(Integer postalCode) {
-
+		
 		this.postalCode = postalCode;
-
+		
 	}
 
-	public City getCity() {
-
+	public Integer getCity() {
+		
 		return city;
-
+		
 	}
 
-	public void setCity(City city) {
-
+	public void setCity(Integer city) {
+		
 		this.city = city;
-
+		
 	}
 
 	public Double getLatitude() {
@@ -205,15 +165,15 @@ public class ModifiedAddress implements Serializable{
 	}
 
 	public void setLatitude(Double latitude) {
-
+		
 		this.latitude = latitude;
 		
 	}
 
 	public Double getLongitude() {
-
+		
 		return longitude;
-
+		
 	}
 
 	public void setLongitude(Double longitude) {
@@ -222,25 +182,29 @@ public class ModifiedAddress implements Serializable{
 
 	}
 
-	public List<ModifiedAddressEdification> getEdifications() {
+	public Map<Integer, ModifiedAddressEdificationBean001> getEdifications() {
+
+		if (edifications==null)
+
+			edifications = new HashMap<Integer, ModifiedAddressEdificationBean001>();
 
 		return edifications;
 
 	}
 
-	public void setEdifications(List<ModifiedAddressEdification> edifications) {
+	public void setEdifications(HashMap<Integer, ModifiedAddressEdificationBean001> edifications) {
 
 		this.edifications = edifications;
 
 	}
 
 	public int hashCode() {
-		
+
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
 		return result;
-		
+
 	}
 
 	public boolean equals(Object obj) {
@@ -251,7 +215,7 @@ public class ModifiedAddress implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ModifiedAddress other = (ModifiedAddress) obj;
+		ModifiedAddressBean001 other = (ModifiedAddressBean001) obj;
 		if (identifier == null) {
 			if (other.identifier != null)
 				return false;

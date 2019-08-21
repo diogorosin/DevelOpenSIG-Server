@@ -2,12 +2,16 @@ package br.com.developen.sig.orm;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,19 +27,26 @@ public class ModifiedAddressEdification implements Serializable {
 	private ModifiedAddressEdificationPK identifier;
 
 	@ManyToOne(optional=false)
-	@JoinColumn(name = "type")
+	@JoinColumn(name = "\"type\"")
 	private Type type;
 
-	@Column(name="reference", nullable = true)	
+	@Column(name="\"reference\"", nullable = true)	
 	private String reference;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="from", nullable = false)
+	@Column(name="\"from\"", nullable = false)
 	private Date from;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="to", nullable = true)
+	@Column(name="\"to\"", nullable = true)
 	private Date to;
+	
+	@OneToMany(
+			fetch=FetchType.LAZY,
+			mappedBy="identifier.modifiedAddressEdification",
+			cascade={CascadeType.ALL}, 
+			orphanRemoval=true)
+	private List<ModifiedAddressEdificationDweller> dwellers;
 
 	public ModifiedAddressEdificationPK getIdentifier() {
 		
@@ -94,6 +105,18 @@ public class ModifiedAddressEdification implements Serializable {
 	public void setTo(Date to) {
 
 		this.to = to;
+
+	}
+
+	public List<ModifiedAddressEdificationDweller> getDwellers() {
+
+		return dwellers;
+
+	}
+
+	public void setDwellers(List<ModifiedAddressEdificationDweller> dwellers) {
+
+		this.dwellers = dwellers;
 
 	}
 

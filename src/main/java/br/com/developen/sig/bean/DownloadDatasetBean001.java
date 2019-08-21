@@ -3,7 +3,7 @@ package br.com.developen.sig.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatasetBean001 implements DatasetBean {
+public class DownloadDatasetBean001 implements DownloadDatasetBean {
 
 	private List<TypeBean001> types;
 

@@ -8,7 +8,7 @@ import br.com.developen.sig.bean.AddressEdificationDwellerBean001;
 import br.com.developen.sig.bean.AgencyBean001;
 import br.com.developen.sig.bean.CityBean001;
 import br.com.developen.sig.bean.CountryBean001;
-import br.com.developen.sig.bean.DatasetBean001;
+import br.com.developen.sig.bean.DownloadDatasetBean001;
 import br.com.developen.sig.bean.IndividualBean001;
 import br.com.developen.sig.bean.OrganizationBean001;
 import br.com.developen.sig.bean.StateBean001;
@@ -26,21 +26,21 @@ import br.com.developen.sig.orm.State;
 import br.com.developen.sig.orm.Subject;
 import br.com.developen.sig.orm.Type;
 
-public class DatasetBuilder001 implements DatasetBuilder {
+public class DownloadDatasetBuilder001 implements DownloadDatasetBuilder {
 
-	private DatasetBean001 datasetBean;
+	private DownloadDatasetBean001 datasetBean;
 	
-	private DatasetBean001 getDatasetBean() {
+	private DownloadDatasetBean001 getDatasetBean() {
 
 		if (datasetBean==null)
 
-			datasetBean = new DatasetBean001();
+			datasetBean = new DownloadDatasetBean001();
 
 		return datasetBean;
 
 	}
-	
-	public DatasetBuilder withTypes(List<Type> types) {
+
+	public DownloadDatasetBuilder withTypes(List<Type> types) {
 
 		getDatasetBean().getTypes().clear();
 
@@ -63,7 +63,7 @@ public class DatasetBuilder001 implements DatasetBuilder {
 	}
 	
 
-	public DatasetBuilder withAgencies(List<Agency> agencies) {
+	public DownloadDatasetBuilder withAgencies(List<Agency> agencies) {
 
 		getDatasetBean().getAgencies().clear();
 
@@ -85,7 +85,7 @@ public class DatasetBuilder001 implements DatasetBuilder {
 
 	}
 
-	public DatasetBuilder withSubjects(List<Subject> subjects) {
+	public DownloadDatasetBuilder withSubjects(List<Subject> subjects) {
 
 		getDatasetBean().getIndividuals().clear();
 
@@ -125,7 +125,7 @@ public class DatasetBuilder001 implements DatasetBuilder {
 
 	}
 
-	public DatasetBuilder withCountries(List<Country> countries) {
+	public DownloadDatasetBuilder withCountries(List<Country> countries) {
 
 		getDatasetBean().getCountries().clear();
 
@@ -147,7 +147,7 @@ public class DatasetBuilder001 implements DatasetBuilder {
 
 	}
 
-	public DatasetBuilder withStates(List<State> states) {
+	public DownloadDatasetBuilder withStates(List<State> states) {
 
 		getDatasetBean().getStates().clear();
 
@@ -169,7 +169,7 @@ public class DatasetBuilder001 implements DatasetBuilder {
 
 	}
 
-	public DatasetBuilder withCities(List<City> cities) {
+	public DownloadDatasetBuilder withCities(List<City> cities) {
 
 		getDatasetBean().getCities().clear();
 
@@ -191,7 +191,7 @@ public class DatasetBuilder001 implements DatasetBuilder {
 
 	}
 
-	public DatasetBuilder withAddresses(List<Address> addresses) {
+	public DownloadDatasetBuilder withAddresses(List<Address> addresses) {
 
 		getDatasetBean().getAddresses().clear();
 
@@ -214,7 +214,7 @@ public class DatasetBuilder001 implements DatasetBuilder {
 	}
 
 
-	public DatasetBuilder withAddressesEdifications(List<AddressEdification> addressesEdifications) {
+	public DownloadDatasetBuilder withAddressesEdifications(List<AddressEdification> addressesEdifications) {
 		
 		getDatasetBean().getAddressesEdifications().clear();
 
@@ -236,7 +236,7 @@ public class DatasetBuilder001 implements DatasetBuilder {
 		
 	}
 
-	public DatasetBuilder withAddressesEdificationsDwellers(List<AddressEdificationDweller> addressesEdificationsDwellers) {
+	public DownloadDatasetBuilder withAddressesEdificationsDwellers(List<AddressEdificationDweller> addressesEdificationsDwellers) {
 
 		getDatasetBean().getAddressesEdificationsDwellers().clear();
 
@@ -432,7 +432,7 @@ public class DatasetBuilder001 implements DatasetBuilder {
 
 	}
 
-	public DatasetBean001 build() {
+	public DownloadDatasetBean001 build() {
 
 		return getDatasetBean();
 

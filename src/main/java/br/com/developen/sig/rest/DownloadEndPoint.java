@@ -35,19 +35,19 @@ import br.com.developen.sig.orm.Token;
 import br.com.developen.sig.orm.TokenDAO;
 import br.com.developen.sig.orm.Type;
 import br.com.developen.sig.orm.TypeDAO;
-import br.com.developen.sig.util.DatasetBuilder001;
+import br.com.developen.sig.util.DownloadDatasetBuilder001;
 import br.com.developen.sig.util.HibernateUtil;
 
-@Path("/dataset")
-public class DatasetEndPoint {
+@Path("/download")
+public class DownloadEndPoint {
 
 	static Logger log = LogManager.getRootLogger();	
 
 	@GET
-	@Path("/initial")	
+	@Path("/dataset")	
 	@Authentication(level=Level.AGENT)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response initial(@Context HttpServletRequest request){
+	public Response dataset(@Context HttpServletRequest request){
 
 
 		String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
@@ -117,7 +117,7 @@ public class DatasetEndPoint {
 
 
 		return Response.status(Response.Status.OK).
-				entity(new DatasetBuilder001().
+				entity(new DownloadDatasetBuilder001().
 						withTypes(types).
 						withAgencies(agencies).
 						withSubjects(subjects).					
