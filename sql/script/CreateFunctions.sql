@@ -1,2 +1,4 @@
 /* CRIA PROCEDIMENTOS */
-\i functions/ClearExpiredTokenJob.sql 
+\i functions/ClearExpiredToken.sql 
+\i functions/FindIndividualByDocuments.sql
+\i functions/ImportModifiedAddress.sql

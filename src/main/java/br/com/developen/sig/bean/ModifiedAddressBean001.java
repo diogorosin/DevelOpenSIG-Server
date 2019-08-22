@@ -13,11 +13,6 @@ public class ModifiedAddressBean001 implements Serializable {
 
 	private Integer identifier;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
-	private Date modifiedAt;
-
-	private Integer modifiedBy;
-
 	private Integer address;
 
 	private String denomination;
@@ -36,8 +31,13 @@ public class ModifiedAddressBean001 implements Serializable {
 
 	private Double longitude;
 
+	private Integer modifiedBy;
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+	private Date modifiedAt;
+
 	private Map<Integer, ModifiedAddressEdificationBean001> edifications;
-	
+
 	public Integer getIdentifier() {
 		
 		return identifier;
@@ -48,30 +48,6 @@ public class ModifiedAddressBean001 implements Serializable {
 		
 		this.identifier = identifier;
 		
-	}
-
-	public Date getModifiedAt() {
-
-		return modifiedAt;
-
-	}
-
-	public void setModifiedAt(Date modifiedAt) {
-
-		this.modifiedAt = modifiedAt;
-
-	}
-
-	public Integer getModifiedBy() {
-		
-		return modifiedBy;
-		
-	}
-
-	public void setModifiedBy(Integer modifiedBy) {
-
-		this.modifiedBy = modifiedBy;
-
 	}
 
 	public Integer getAddress() {
@@ -135,9 +111,9 @@ public class ModifiedAddressBean001 implements Serializable {
 	}
 
 	public Integer getPostalCode() {
-		
+
 		return postalCode;
-		
+
 	}
 
 	public void setPostalCode(Integer postalCode) {
@@ -179,6 +155,30 @@ public class ModifiedAddressBean001 implements Serializable {
 	public void setLongitude(Double longitude) {
 
 		this.longitude = longitude;
+
+	}
+
+	public Integer getModifiedBy() {
+		
+		return modifiedBy;
+		
+	}
+
+	public void setModifiedBy(Integer modifiedBy) {
+
+		this.modifiedBy = modifiedBy;
+
+	}
+
+	public Date getModifiedAt() {
+
+		return modifiedAt;
+
+	}
+
+	public void setModifiedAt(Date modifiedAt) {
+
+		this.modifiedAt = modifiedAt;
 
 	}
 

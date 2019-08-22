@@ -1,5 +1,5 @@
 /* EXCLUI FUNCOES */
---\i script/DropFunctions.sql;
+\i script/DropFunctions.sql;
 
 /* EXCLUI VIEWS */
 \i script/DropViews.sql;
@@ -37,4 +37,4 @@
 \i script/CreateViews.sql
 
 /* CRIA FUNCOES */
---\i script/CreateFunctions.sql
+\i script/CreateFunctions.sql

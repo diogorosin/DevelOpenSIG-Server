@@ -7,7 +7,11 @@ import org.quartz.JobExecutionException;
 
 import br.com.developen.sig.util.HibernateUtil;
 
-public class ClearExpiredSystemTokenJob implements Job {
+/* 
+ * 
+ * https://vladmihalcea.com/how-to-call-postgresql-functions-from-hibernate/
+ */
+public class ImportModifiedAddressesJob implements Job {
 
 	@Override
 	public void execute(final JobExecutionContext ctx) throws JobExecutionException {
@@ -16,11 +20,11 @@ public class ClearExpiredSystemTokenJob implements Job {
 
 		session.beginTransaction();
 
-		session.createStoredProcedureQuery("ClearExpiredToken").execute();
+		session.createStoredProcedureCall("ImportModifiedAddress").getOutputs();
 
 		session.getTransaction().commit();
 
-		session.close(); 
+		session.close();
 
 	}
 

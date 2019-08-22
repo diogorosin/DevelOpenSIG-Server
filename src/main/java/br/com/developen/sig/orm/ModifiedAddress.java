@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -22,13 +24,25 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="\"ModifiedAddress\"")
+@NamedQueries({
+	@NamedQuery(
+			name = ModifiedAddress.THAT_WAS_NOT_IMPORTED,
+			query = "FROM ModifiedAddress MA WHERE MA.importedAt IS NULL"
+	)
+})
 public class ModifiedAddress implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
+	public static final String THAT_WAS_NOT_IMPORTED = "ModifiedAddress.thatWasNotImported";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer identifier;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="\"importedAt\"", nullable = true)
+	private Date importedAt;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="\"modifiedAt\"", nullable = false)
@@ -88,6 +102,18 @@ public class ModifiedAddress implements Serializable{
 
 		this.identifier = identifier;
 
+	}
+
+	public Date getImportedAt() {
+
+		return importedAt;
+
+	}
+
+	public void setImportedAt(Date importedAt) {
+		
+		this.importedAt = importedAt;
+		
 	}
 
 	public Date getModifiedAt() {

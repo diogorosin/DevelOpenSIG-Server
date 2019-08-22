@@ -1,6 +1,7 @@
 package br.com.developen.sig.orm;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 
@@ -56,6 +59,14 @@ public class Address implements Serializable{
 	@Column(name="\"longitude\"", nullable=false)
 	private Double longitude;
 	
+	@ManyToOne(optional=false)
+	@JoinColumn(name="\"verifiedBy\"", nullable=false)
+	private User verifiedBy;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="\"verifiedAt\"", nullable = false)
+	private Date verifiedAt;
+
 	@OneToMany(
 			fetch=FetchType.LAZY,
 			mappedBy="identifier.address", 
@@ -169,6 +180,30 @@ public class Address implements Serializable{
 
 		this.longitude = longitude;
 
+	}
+
+	public User getVerifiedBy() {
+		
+		return verifiedBy;
+		
+	}
+
+	public void setVerifiedBy(User verifiedBy) {
+		
+		this.verifiedBy = verifiedBy;
+		
+	}
+
+	public Date getVerifiedAt() {
+		
+		return verifiedAt;
+		
+	}
+
+	public void setVerifiedAt(Date verifiedAt) {
+		
+		this.verifiedAt = verifiedAt;
+		
 	}
 
 	public List<AddressEdification> getEdifications() {

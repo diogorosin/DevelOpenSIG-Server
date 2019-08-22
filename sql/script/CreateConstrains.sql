@@ -39,13 +39,13 @@ ALTER TABLE "ModifiedAddressEdificationDweller" ADD CONSTRAINT "ModifiedAddressE
 
 /*FOREIGN KEYS*/
 ALTER TABLE "Address" ADD CONSTRAINT "AddressCityFK" FOREIGN KEY("city") REFERENCES "City"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Address" ADD CONSTRAINT "AddressVerifiedByFK" FOREIGN KEY("verifiedBy") REFERENCES "User"("individual") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 ALTER TABLE "AddressEdification" ADD CONSTRAINT "AddressEdificationAddressFK" FOREIGN KEY("address") REFERENCES "Address"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
 ALTER TABLE "AddressEdification" ADD CONSTRAINT "AddressEdificationTypeFK" FOREIGN KEY("type") REFERENCES "Type"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 ALTER TABLE "AddressEdificationDweller" ADD CONSTRAINT "AddressEdificationDwellerAddressEdificationFK" FOREIGN KEY("address", "edification") REFERENCES "AddressEdification"("address", "edification") ON DELETE RESTRICT ON UPDATE CASCADE;
 ALTER TABLE "AddressEdificationDweller" ADD CONSTRAINT "AddressEdificationDwellerSubjectFK" FOREIGN KEY("subject") REFERENCES "Subject"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
-ALTER TABLE "AddressEdificationDweller" ADD CONSTRAINT "AddressEdificationDwellerVerifiedByFK" FOREIGN KEY("verifiedBy") REFERENCES "User"("individual") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 ALTER TABLE "City" ADD CONSTRAINT "CityStateFK" FOREIGN KEY("state") REFERENCES "State"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
 

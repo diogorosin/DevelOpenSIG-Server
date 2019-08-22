@@ -1,6 +1,7 @@
 package br.com.developen.sig.orm;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -29,6 +32,14 @@ public class AddressEdification implements Serializable {
 
 	@Column(name="reference", nullable = true)	
 	private String reference;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="\"from\"", nullable = false)
+	private Date from;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="\"to\"", nullable = true)
+	private Date to;
 
 	@OneToMany(
 			fetch=FetchType.LAZY,
@@ -82,6 +93,30 @@ public class AddressEdification implements Serializable {
 	public void setReference(String reference) {
 
 		this.reference = reference;
+
+	}
+	
+	public Date getFrom() {
+		
+		return from;
+		
+	}
+
+	public void setFrom(Date from) {
+		
+		this.from = from;
+		
+	}
+
+	public Date getTo() {
+		
+		return to;
+		
+	}
+
+	public void setTo(Date to) {
+
+		this.to = to;
 
 	}
 

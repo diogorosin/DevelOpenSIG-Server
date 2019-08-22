@@ -34,14 +34,6 @@ public class AddressEdificationDweller implements Serializable {
 	@Column(name="to", nullable = true)
 	private Date to;
 
-	@ManyToOne(optional=false)
-	@JoinColumn(name="\"verifiedBy\"", nullable=false)
-	private User verifiedBy;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="\"verifiedAt\"", nullable = false)
-	private Date verifiedAt;
-
 	public AddressEdificationDwellerPK getIdentifier() {
 
 		return identifier;
@@ -87,30 +79,6 @@ public class AddressEdificationDweller implements Serializable {
 	public void setTo(Date to) {
 		
 		this.to = to;
-		
-	}
-
-	public User getVerifiedBy() {
-		
-		return verifiedBy;
-		
-	}
-
-	public void setVerifiedBy(User verifiedBy) {
-		
-		this.verifiedBy = verifiedBy;
-		
-	}
-
-	public Date getVerifiedAt() {
-		
-		return verifiedAt;
-		
-	}
-
-	public void setVerifiedAt(Date verifiedAt) {
-		
-		this.verifiedAt = verifiedAt;
 		
 	}
 

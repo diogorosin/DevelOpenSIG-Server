@@ -1,5 +1,9 @@
 package br.com.developen.sig.bean;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class AddressEdificationBean001 {
 
 	private Integer address;
@@ -9,6 +13,12 @@ public class AddressEdificationBean001 {
 	private Integer type;
 	
 	private String reference;
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")	
+	private Date from;
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")	
+	private Date to;
 
 	public Integer getAddress() {
 
@@ -56,6 +66,30 @@ public class AddressEdificationBean001 {
 
 		this.reference = reference;
 
+	}
+	
+	public Date getFrom() {
+		
+		return from;
+		
+	}
+
+	public void setFrom(Date from) {
+		
+		this.from = from;
+		
+	}
+
+	public Date getTo() {
+		
+		return to;
+		
+	}
+
+	public void setTo(Date to) {
+		
+		this.to = to;
+		
 	}
 
 	public int hashCode() {

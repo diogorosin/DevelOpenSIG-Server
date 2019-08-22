@@ -20,11 +20,6 @@ public class AddressEdificationDwellerBean001 {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")	
 	private Date to;
 
-	private Integer verifiedBy;
-
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")  
-	private Date verifiedAt;
-
 	public Integer getAddress() {
 
 		return address;
@@ -95,30 +90,6 @@ public class AddressEdificationDwellerBean001 {
 		
 		this.to = to;
 		
-	}
-
-	public Integer getVerifiedBy() {
-		
-		return verifiedBy;
-		
-	}
-
-	public void setVerifiedBy(Integer verifiedBy) {
-		
-		this.verifiedBy = verifiedBy;
-
-	}
-
-	public Date getVerifiedAt() {
-
-		return verifiedAt;
-
-	}
-
-	public void setVerifiedAt(Date verifiedAt) {
-
-		this.verifiedAt = verifiedAt;
-
 	}
 
 	public int hashCode() {

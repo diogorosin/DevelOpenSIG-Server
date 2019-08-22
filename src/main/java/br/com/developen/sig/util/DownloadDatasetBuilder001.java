@@ -372,6 +372,13 @@ public class DownloadDatasetBuilder001 implements DownloadDatasetBuilder {
 
 		addressBean.setLongitude(address.getLongitude());
 
+		addressBean.setVerifiedBy(address.
+				getVerifiedBy().
+				getIdentifier());
+
+		addressBean.setVerifiedAt(address.
+				getVerifiedAt());
+
 	}
 
 	private void populateAddressEdification(AddressEdificationBean001 addressEdificationBean, AddressEdification addressEdification){
@@ -391,6 +398,12 @@ public class DownloadDatasetBuilder001 implements DownloadDatasetBuilder {
 
 		addressEdificationBean.setReference(addressEdification.
 				getReference());
+
+		addressEdificationBean.setFrom(addressEdification.
+				getFrom());
+
+		addressEdificationBean.setTo(addressEdification.
+				getTo());
 
 	}
 
@@ -423,13 +436,6 @@ public class DownloadDatasetBuilder001 implements DownloadDatasetBuilder {
 		addressEdificationDwellerBean.setTo(addressEdificationDweller.
 				getTo());
 		
-		addressEdificationDwellerBean.setVerifiedBy(addressEdificationDweller.
-				getVerifiedBy().
-				getIdentifier());
-		
-		addressEdificationDwellerBean.setVerifiedAt(addressEdificationDweller.
-				getVerifiedAt());
-
 	}
 
 	public DownloadDatasetBean001 build() {

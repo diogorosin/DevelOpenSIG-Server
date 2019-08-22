@@ -6,6 +6,10 @@ CREATE TABLE "AddressEdification" (
 
 	"type" INTEGER NOT NULL,
 
-	"reference" VARCHAR(10)
+	"reference" VARCHAR(10),
+
+	"from" TIMESTAMP NOT NULL,
+
+	"to" TIMESTAMP
 
 );

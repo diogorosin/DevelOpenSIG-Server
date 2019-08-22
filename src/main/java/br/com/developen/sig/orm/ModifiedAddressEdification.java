@@ -32,7 +32,7 @@ public class ModifiedAddressEdification implements Serializable {
 
 	@Column(name="\"reference\"", nullable = true)	
 	private String reference;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="\"from\"", nullable = false)
 	private Date from;
@@ -40,7 +40,7 @@ public class ModifiedAddressEdification implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="\"to\"", nullable = true)
 	private Date to;
-	
+
 	@OneToMany(
 			fetch=FetchType.LAZY,
 			mappedBy="identifier.modifiedAddressEdification",

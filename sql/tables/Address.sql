@@ -16,6 +16,10 @@ CREATE TABLE "Address" (
 
     "latitude" FLOAT NOT NULL,
 
-    "longitude" FLOAT NOT NULL
+    "longitude" FLOAT NOT NULL,
+
+	"verifiedAt" TIMESTAMP NOT NULL,
+
+	"verifiedBy" INTEGER NOT NULL
 
 );

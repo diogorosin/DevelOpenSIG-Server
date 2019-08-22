@@ -2,10 +2,6 @@ CREATE TABLE "ModifiedAddress" (
 
 	"identifier" INTEGER DEFAULT NEXTVAL('ModifiedAddressSequence') NOT NULL,
 
-    "modifiedAt" TIMESTAMP NOT NULL,
-
-    "modifiedBy" INTEGER NOT NULL,
-
     "address" INTEGER,
 
 	"denomination" VARCHAR(100),
@@ -22,6 +18,12 @@ CREATE TABLE "ModifiedAddress" (
 
     "latitude" FLOAT NOT NULL,
 
-    "longitude" FLOAT NOT NULL
+    "longitude" FLOAT NOT NULL,
+
+    "modifiedBy" INTEGER NOT NULL,
+
+    "modifiedAt" TIMESTAMP NOT NULL,
+
+    "importedAt" TIMESTAMP
 
 );

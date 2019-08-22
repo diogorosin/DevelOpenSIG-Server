@@ -10,10 +10,6 @@ CREATE TABLE "AddressEdificationDweller" (
 
 	"from" TIMESTAMP NOT NULL,
 
-	"to" TIMESTAMP,
-
-	"verifiedAt" TIMESTAMP NOT NULL,
-
-	"verifiedBy" INTEGER NOT NULL
+	"to" TIMESTAMP
 
 );

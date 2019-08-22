@@ -1,6 +1,9 @@
 package br.com.developen.sig.bean;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AddressBean001 implements Serializable {
 
@@ -23,6 +26,11 @@ public class AddressBean001 implements Serializable {
 	private Double latitude;
 
 	private Double longitude;
+
+	private Integer verifiedBy;
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")  
+	private Date verifiedAt;
 
 	public Integer getIdentifier() {
 		
@@ -130,6 +138,30 @@ public class AddressBean001 implements Serializable {
 		
 		this.longitude = longitude;
 		
+	}
+
+	public Integer getVerifiedBy() {
+		
+		return verifiedBy;
+		
+	}
+
+	public void setVerifiedBy(Integer verifiedBy) {
+		
+		this.verifiedBy = verifiedBy;
+
+	}
+
+	public Date getVerifiedAt() {
+
+		return verifiedAt;
+
+	}
+
+	public void setVerifiedAt(Date verifiedAt) {
+
+		this.verifiedAt = verifiedAt;
+
 	}
 
 	public int hashCode() {
