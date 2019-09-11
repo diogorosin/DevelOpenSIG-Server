@@ -88,6 +88,18 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 						type(MediaType.APPLICATION_JSON).
 						build());
 
+			//VERIFICA SE TOKEN POSSUI MAIS DE 24H
+//			Calendar calendar = Calendar.getInstance();
+
+//			calendar.add(Calendar.HOUR, -24);
+
+//			if (token.getExpire().before(calendar.getTime()))
+
+//				throw new WebApplicationException(Response.status(Status.UNAUTHORIZED).
+//				entity(new ExceptionBean001(I18N.get(I18N.EXPIRED_TOKEN))).
+//				type(MediaType.APPLICATION_JSON).
+//				build());
+
 			//VERIFICA SE A EMPRESA ESTA ATIVA			
 			if (!token.
 					getSubjectSubject().
@@ -140,7 +152,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
 			Calendar calendar = Calendar.getInstance();
 
-			calendar.add(Calendar.MINUTE, +15);
+			calendar.add(Calendar.HOUR, +24);
 
 			token.setExpire(calendar.getTime());
 

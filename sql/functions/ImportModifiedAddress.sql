@@ -4,12 +4,12 @@ CREATE OR REPLACE FUNCTION ImportModifiedAddress()
 RETURNS VOID AS $$
 DECLARE
 
-	v_subject INTEGER;
 	v_address INTEGER;
 	v_edification INTEGER;
 	v_dweller INTEGER;
+	v_individual INTEGER;
 	v_transition TIMESTAMP;
-	
+
 	ma RECORD;
 	mae RECORD;
 	maed RECORD;
@@ -58,56 +58,51 @@ BEGIN
 				WHERE "MAED"."modifiedAddress" = mae."modifiedAddress" AND "MAED"."edification" = mae."edification"
 				LOOP
 
-					--VERIFICA SE FOR PESSOA FISICA
-					IF (maed."type" = 'F') THEN
+					--VERIFICA SE POSSUI VINCULO A DETERMINADO INDIVIDUO
+					IF(maed."individual" IS NULL) THEN
 
-						--VERIFICA SE POSSUI VINCULO A DETERMINADO INDIVIDUO
-						IF(maed."subject" IS NULL) THEN
+						--BUSCA INDIVIDUO PELOS DOCUMENTOS
+						SELECT FindIndividualByDocuments(maed."cpf", maed."rgNumber", maed."rgAgency", maed."rgState") 
+						INTO v_individual;
 
-							--BUSCA INDIVIDUO PELOS DOCUMENTOS
-							SELECT FindIndividualByDocuments(maed."cpf", maed."rgNumber", maed."rgAgency", maed."rgState") 
-							INTO v_subject;
+						--SE NAO LOCALIZOU O INDIVIDUO, REALIZA A INCLUSAO NO BANCO DE DADOS
+						IF (v_individual IS NULL) THEN
 
-							--SE NAO LOCALIZOU O INDIVIDUO, REALIZA A INCLUSAO NO BANCO DE DADOS
-							IF (v_subject IS NULL) THEN
+							INSERT INTO "Subject" ("active")
+							VALUES (TRUE)
+							RETURNING "identifier" INTO v_individual;
 
-								INSERT INTO "Subject" ("active")
-								VALUES (TRUE)
-								RETURNING "identifier" INTO v_subject;
-
-								INSERT INTO "Individual" ("subject", "name", "motherName", "fatherName", "cpf", "rgNumber", "rgAgency", "rgState", "birthPlace", "birthDate", "gender")
-								VALUES (v_subject, maed."nameOrDenomination", maed."motherName", maed."fatherName", maed."cpf", maed."rgNumber", maed."rgAgency", maed."rgState", maed."birthPlace", maed."birthDate", maed."gender");
-
-							END IF;
-
-						ELSE
-
-							v_subject := maed."subject";
+							INSERT INTO "Individual" ("subject", "name", "motherName", "fatherName", "cpf", "rgNumber", "rgAgency", "rgState", "birthPlace", "birthDate", "gender")
+							VALUES (v_individual, maed."name", maed."motherName", maed."fatherName", maed."cpf", maed."rgNumber", maed."rgAgency", maed."rgState", maed."birthPlace", maed."birthDate", maed."gender");
 
 						END IF;
 
-						--DEFINE A DATA/HORA DA TRANSICAO
-						v_transition = NOW();
+					ELSE
 
-						--DEFINE A DATA DE SAIDA DA ANTIGA MORADIA
-						UPDATE "AddressEdificationDweller" 
-						SET "to" = v_transition
-						WHERE "to" IS NULL AND "subject" = v_subject;
-
-						--BUSCA O NUMERO DA ULTIMA EDIFICACAO
-						SELECT COALESCE(MAX("AED"."dweller"), 0) 
-						INTO v_dweller
-						FROM "AddressEdificationDweller" "AED" 
-						WHERE "AED"."address" = v_address AND "AED"."edification" = v_edification; 
-
-						--ACRESCENTA MAIS UM
-						v_dweller := v_dweller + 1;
-
-						--INSERE NOVO MORADOR
-						INSERT INTO "AddressEdificationDweller" ("address", "edification", "dweller", "subject", "from", "to") 
-						VALUES (v_address, v_edification, v_dweller, v_subject, v_transition, null);
+						v_individual := maed."individual";
 
 					END IF;
+
+					--DEFINE A DATA/HORA DA TRANSICAO
+					v_transition = NOW();
+
+					--DEFINE A DATA DE SAIDA DA ANTIGA MORADIA
+					UPDATE "AddressEdificationDweller" 
+					SET "to" = v_transition
+					WHERE "to" IS NULL AND "individual" = v_individual;
+
+					--BUSCA O NUMERO DA ULTIMA EDIFICACAO
+					SELECT COALESCE(MAX("AED"."dweller"), 0) 
+					INTO v_dweller
+					FROM "AddressEdificationDweller" "AED" 
+					WHERE "AED"."address" = v_address AND "AED"."edification" = v_edification; 
+
+					--ACRESCENTA MAIS UM
+					v_dweller := v_dweller + 1;
+
+					--INSERE NOVO MORADOR
+					INSERT INTO "AddressEdificationDweller" ("address", "edification", "dweller", "individual", "from", "to") 
+					VALUES (v_address, v_edification, v_dweller, v_individual, v_transition, null);
 
 				END LOOP;
 

@@ -101,7 +101,7 @@ public class DownloadEndPoint {
 
 						addressesEdificationsDwellers.add(addressEdificationDweller);
 
-						Subject subject = addressEdificationDweller.getSubject();
+						Subject subject = addressEdificationDweller.getIndividual();
 
 						if (!subjects.contains(subject))
 
@@ -113,14 +113,14 @@ public class DownloadEndPoint {
 
 			}
 
-		}
+		}		
 
-
+		
 		return Response.status(Response.Status.OK).
 				entity(new DownloadDatasetBuilder001().
 						withTypes(types).
 						withAgencies(agencies).
-						withSubjects(subjects).					
+						withSubjects(subjects).				
 						withCountries(countries).
 						withStates(states).
 						withCities(cities).
@@ -128,10 +128,10 @@ public class DownloadEndPoint {
 						withAddressesEdifications(addressesEdifications).
 						withAddressesEdificationsDwellers(addressesEdificationsDwellers).
 						build()).
-				build();
+				build(); 
 
 		
 	}
-
 	
+
 }

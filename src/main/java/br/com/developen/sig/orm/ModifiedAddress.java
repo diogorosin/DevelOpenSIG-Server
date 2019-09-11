@@ -60,11 +60,11 @@ public class ModifiedAddress implements Serializable{
 	@Column(name="\"denomination\"", nullable=true)
 	private String denomination;
 
-	@Size(min=1, max=5)	
-	@Column(name="\"number\"", nullable=true)	
+	@Size(min=0, max=5)
+	@Column(name="\"number\"", nullable=true)
 	private String number;	
 
-	@Size(min=1, max=10)	
+	@Size(min=0, max=50)
 	@Column(name="\"reference\"", nullable=true)	
 	private String reference;
 

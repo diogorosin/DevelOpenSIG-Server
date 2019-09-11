@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION FindIndividualByDocuments(i_cpf BIGINT, i_rgNumber INTEGER, i_rgAgency INTEGER, i_rgState INTEGER) 
+CREATE OR REPLACE FUNCTION FindIndividualByDocuments(i_cpf BIGINT, i_rgNumber BIGINT, i_rgAgency INTEGER, i_rgState INTEGER) 
 RETURNS INTEGER AS $$
 DECLARE
 

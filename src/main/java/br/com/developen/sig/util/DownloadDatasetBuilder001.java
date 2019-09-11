@@ -425,17 +425,17 @@ public class DownloadDatasetBuilder001 implements DownloadDatasetBuilder {
 		addressEdificationDwellerBean.setDweller(addressEdificationDweller.
 				getIdentifier().
 				getDweller());
-		
-		addressEdificationDwellerBean.setSubject(addressEdificationDweller.
-				getSubject().
+
+		addressEdificationDwellerBean.setIndividual(addressEdificationDweller.
+				getIndividual().
 				getIdentifier());
-		
+
 		addressEdificationDwellerBean.setFrom(addressEdificationDweller.
 				getFrom());
-		
+
 		addressEdificationDwellerBean.setTo(addressEdificationDweller.
 				getTo());
-		
+
 	}
 
 	public DownloadDatasetBean001 build() {

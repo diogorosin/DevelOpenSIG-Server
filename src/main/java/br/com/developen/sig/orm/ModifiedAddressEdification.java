@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -30,6 +31,7 @@ public class ModifiedAddressEdification implements Serializable {
 	@JoinColumn(name = "\"type\"")
 	private Type type;
 
+	@Size(min=0, max=10)
 	@Column(name="\"reference\"", nullable = true)	
 	private String reference;
 

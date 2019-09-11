@@ -14,6 +14,7 @@ import br.com.developen.sig.orm.AddressDAO;
 import br.com.developen.sig.orm.AgencyDAO;
 import br.com.developen.sig.orm.CityDAO;
 import br.com.developen.sig.orm.Government;
+import br.com.developen.sig.orm.IndividualDAO;
 import br.com.developen.sig.orm.ModifiedAddress;
 import br.com.developen.sig.orm.ModifiedAddressDAO;
 import br.com.developen.sig.orm.ModifiedAddressEdification;
@@ -21,7 +22,6 @@ import br.com.developen.sig.orm.ModifiedAddressEdificationDweller;
 import br.com.developen.sig.orm.ModifiedAddressEdificationDwellerPK;
 import br.com.developen.sig.orm.ModifiedAddressEdificationPK;
 import br.com.developen.sig.orm.StateDAO;
-import br.com.developen.sig.orm.SubjectDAO;
 import br.com.developen.sig.orm.TypeDAO;
 import br.com.developen.sig.orm.User;
 import br.com.developen.sig.orm.UserDAO;
@@ -55,7 +55,7 @@ public class UploadDatasetReader001 {
 
 		TypeDAO typeDAO = new TypeDAO(session);
 
-		SubjectDAO subjectDAO = new SubjectDAO(session);
+		IndividualDAO individualDAO = new IndividualDAO(session);
 
 		AgencyDAO agencyDAO = new AgencyDAO(session);
 
@@ -145,13 +145,11 @@ public class UploadDatasetReader001 {
 
 					modifiedAddressEdificationDweller.setIdentifier(modifiedAddressEdificationDwellerPK);
 
-					modifiedAddressEdificationDweller.setType(modifiedAddressEdificationDwellerBean.getType());
+					modifiedAddressEdificationDweller.setIndividual(
+							modifiedAddressEdificationDwellerBean.getIndividual()==null ? null : 
+								individualDAO.retrieve(modifiedAddressEdificationDwellerBean.getIndividual()));
 
-					modifiedAddressEdificationDweller.setSubject(
-							modifiedAddressEdificationDwellerBean.getSubject()==null ? null : 
-								subjectDAO.retrieve(modifiedAddressEdificationDwellerBean.getSubject()));
-
-					modifiedAddressEdificationDweller.setNameOrDenomination(modifiedAddressEdificationDwellerBean.getNameOrDenomination());
+					modifiedAddressEdificationDweller.setName(modifiedAddressEdificationDwellerBean.getName());
 
 					modifiedAddressEdificationDweller.setMotherName(modifiedAddressEdificationDwellerBean.getMotherName());
 

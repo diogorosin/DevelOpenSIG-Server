@@ -6,13 +6,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ModifiedAddressEdificationDwellerBean001 {
 
-	private Integer subject;
+	private Integer individual;
 
-    private String type;
-
-    private String nameOrDenomination;
-
-    private String fancyName;
+    private String name;
 
     private String motherName;
 
@@ -39,51 +35,27 @@ public class ModifiedAddressEdificationDwellerBean001 {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")	
 	private Date to;
 
-	public Integer getSubject() {
+	public Integer getIndividual() {
 
-		return subject;
-
-	}
-
-	public void setSubject(Integer subject) {
-
-		this.subject = subject;
+		return individual;
 
 	}
 
-	public String getNameOrDenomination() {
+	public void setIndividual(Integer individual) {
 
-		return nameOrDenomination;
-
-	}
-
-	public void setNameOrDenomination(String nameOrDenomination) {
-
-		this.nameOrDenomination = nameOrDenomination;
+		this.individual = individual;
 
 	}
 
-	public String getType() {
+	public String getName() {
 
-		return type;
-
-	}
-
-	public void setType(String type) {
-
-		this.type = type;
+		return name;
 
 	}
 
-	public String getFancyName() {
+	public void setName(String name) {
 
-		return fancyName;
-
-	}
-
-	public void setFancyName(String fancyName) {
-
-		this.fancyName = fancyName;
+		this.name = name;
 
 	}
 

@@ -23,8 +23,8 @@ public class AddressEdificationDweller implements Serializable {
 	private AddressEdificationDwellerPK identifier;
 
 	@ManyToOne(optional=false)
-	@JoinColumn(name="subject", nullable=false)
-	private Subject subject;
+	@JoinColumn(name="individual", nullable=false)
+	private Individual individual;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="from", nullable = false)
@@ -46,15 +46,15 @@ public class AddressEdificationDweller implements Serializable {
 
 	}
 
-	public Subject getSubject() {
+	public Individual getIndividual() {
 
-		return subject;
+		return individual;
 
 	}
 
-	public void setSubject(Subject subject) {
+	public void setIndividual(Individual individual) {
 
-		this.subject = subject;
+		this.individual = individual;
 
 	}
 

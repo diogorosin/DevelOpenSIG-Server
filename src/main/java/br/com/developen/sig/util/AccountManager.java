@@ -174,7 +174,7 @@ public class AccountManager {
 
 		Calendar calendar = Calendar.getInstance();
 
-		calendar.add(Calendar.MINUTE, +15);
+		calendar.add(Calendar.HOUR, +24);
 
 		token.setExpire(calendar.getTime());
 

@@ -11,8 +11,8 @@ public class AddressEdificationDwellerBean001 {
 	private Integer edification;
 
 	private Integer dweller;
-	
-	private Integer subject;
+
+	private Integer individual;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")	
 	private Date from;
@@ -56,15 +56,15 @@ public class AddressEdificationDwellerBean001 {
 
 	}
 
-	public Integer getSubject() {
+	public Integer getIndividual() {
 
-		return subject;
+		return individual;
 
 	}
 
-	public void setSubject(Integer subject) {
+	public void setIndividual(Integer individual) {
 
-		this.subject = subject;
+		this.individual = individual;
 
 	}
 

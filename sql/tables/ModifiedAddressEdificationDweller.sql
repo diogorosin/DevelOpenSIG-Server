@@ -6,13 +6,9 @@ CREATE TABLE "ModifiedAddressEdificationDweller" (
 
 	"dweller" INTEGER NOT NULL,
 
-	"subject" INTEGER,
+	"individual" INTEGER,
 
-    "nameOrDenomination" VARCHAR(150) NOT NULL,
-
-    "type" VARCHAR(1) NOT NULL,
-
-    "fancyName" VARCHAR(32), 
+    "name" VARCHAR(150) NOT NULL,
 
 	"motherName" VARCHAR(150),
 

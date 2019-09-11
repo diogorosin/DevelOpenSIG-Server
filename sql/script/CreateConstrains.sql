@@ -45,7 +45,7 @@ ALTER TABLE "AddressEdification" ADD CONSTRAINT "AddressEdificationAddressFK" FO
 ALTER TABLE "AddressEdification" ADD CONSTRAINT "AddressEdificationTypeFK" FOREIGN KEY("type") REFERENCES "Type"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 ALTER TABLE "AddressEdificationDweller" ADD CONSTRAINT "AddressEdificationDwellerAddressEdificationFK" FOREIGN KEY("address", "edification") REFERENCES "AddressEdification"("address", "edification") ON DELETE RESTRICT ON UPDATE CASCADE;
-ALTER TABLE "AddressEdificationDweller" ADD CONSTRAINT "AddressEdificationDwellerSubjectFK" FOREIGN KEY("subject") REFERENCES "Subject"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "AddressEdificationDweller" ADD CONSTRAINT "AddressEdificationDwellerIndividualFK" FOREIGN KEY("individual") REFERENCES "Individual"("subject") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 ALTER TABLE "City" ADD CONSTRAINT "CityStateFK" FOREIGN KEY("state") REFERENCES "State"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -81,7 +81,7 @@ ALTER TABLE "ModifiedAddressEdification" ADD CONSTRAINT "ModifiedAddressEdificat
 ALTER TABLE "ModifiedAddressEdification" ADD CONSTRAINT "ModifiedAddressEdificationTypeFK" FOREIGN KEY("type") REFERENCES "Type"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 ALTER TABLE "ModifiedAddressEdificationDweller" ADD CONSTRAINT "ModifiedAddressEdificationDwellerModifiedAddressEdificationFK" FOREIGN KEY("modifiedAddress", "edification") REFERENCES "ModifiedAddressEdification"("modifiedAddress", "edification") ON DELETE RESTRICT ON UPDATE CASCADE;
-ALTER TABLE "ModifiedAddressEdificationDweller" ADD CONSTRAINT "ModifiedAddressEdificationDwellerSubjectFK" FOREIGN KEY("subject") REFERENCES "Subject"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ModifiedAddressEdificationDweller" ADD CONSTRAINT "ModifiedAddressEdificationDwellerIndividualFK" FOREIGN KEY("individual") REFERENCES "Individual"("subject") ON DELETE RESTRICT ON UPDATE CASCADE;
 ALTER TABLE "ModifiedAddressEdificationDweller" ADD CONSTRAINT "ModifiedAddressEdificationDwellerRgAgencyFK" FOREIGN KEY("rgAgency") REFERENCES "Agency"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
 ALTER TABLE "ModifiedAddressEdificationDweller" ADD CONSTRAINT "ModifiedAddressEdificationDwellerRgStateFK" FOREIGN KEY("rgState") REFERENCES "State"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;
 ALTER TABLE "ModifiedAddressEdificationDweller" ADD CONSTRAINT "ModifiedAddressEdificationDwellerBirthPlaceFK" FOREIGN KEY("birthPlace") REFERENCES "City"("identifier") ON DELETE RESTRICT ON UPDATE CASCADE;

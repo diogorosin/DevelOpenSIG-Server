@@ -23,6 +23,8 @@ public class ImportModifiedAddressesJob implements Job {
 		session.createStoredProcedureCall("ImportModifiedAddress").getOutputs();
 
 		session.getTransaction().commit();
+		
+		session.flush();
 
 		session.close();
 

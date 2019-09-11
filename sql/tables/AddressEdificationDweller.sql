@@ -6,7 +6,7 @@ CREATE TABLE "AddressEdificationDweller" (
 
 	"dweller" INTEGER NOT NULL,
 
-	"subject" INTEGER NOT NULL,
+	"individual" INTEGER NOT NULL,
 
 	"from" TIMESTAMP NOT NULL,
 

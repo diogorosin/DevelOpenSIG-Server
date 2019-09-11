@@ -6,7 +6,7 @@ ALTER TABLE IF EXISTS "AddressEdification" DROP CONSTRAINT IF EXISTS "AddressEdi
 ALTER TABLE IF EXISTS "AddressEdification" DROP CONSTRAINT IF EXISTS "AddressEdificationTypeFK" CASCADE;
 
 ALTER TABLE IF EXISTS "AddressEdificationDweller" DROP CONSTRAINT IF EXISTS "AddressEdificationDwellerAddressEdificationFK" CASCADE;
-ALTER TABLE IF EXISTS "AddressEdificationDweller" DROP CONSTRAINT IF EXISTS "AddressEdificationDwellerSubjectFK" CASCADE;
+ALTER TABLE IF EXISTS "AddressEdificationDweller" DROP CONSTRAINT IF EXISTS "AddressEdificationDwellerIndividualFK" CASCADE;
 
 ALTER TABLE IF EXISTS "City" DROP CONSTRAINT IF EXISTS "CityStateFK" CASCADE;
 
@@ -42,7 +42,7 @@ ALTER TABLE IF EXISTS "ModifiedAddressEdification" DROP CONSTRAINT IF EXISTS "Mo
 ALTER TABLE IF EXISTS "ModifiedAddressEdification" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationTypeFK" CASCADE;
 
 ALTER TABLE IF EXISTS "ModifiedAddressEdificationDweller" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationDwellerModifiedAddressEdificationFK" CASCADE;
-ALTER TABLE IF EXISTS "ModifiedAddressEdificationDweller" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationDwellerSubjectFK" CASCADE;
+ALTER TABLE IF EXISTS "ModifiedAddressEdificationDweller" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationDwellerIndividualFK" CASCADE;
 ALTER TABLE IF EXISTS "ModifiedAddressEdificationDweller" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationDwellerRgAgencyFK" CASCADE;
 ALTER TABLE IF EXISTS "ModifiedAddressEdificationDweller" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationDwellerRgStateFK" CASCADE;
 ALTER TABLE IF EXISTS "ModifiedAddressEdificationDweller" DROP CONSTRAINT IF EXISTS "ModifiedAddressEdificationDwellerBirthPlaceFK" CASCADE;

@@ -24,21 +24,13 @@ public class ModifiedAddressEdificationDweller implements Serializable {
 	private ModifiedAddressEdificationDwellerPK identifier;
 
 	@ManyToOne(optional=true)
-	@JoinColumn(name="subject", nullable=true)
-	private Subject subject;
+	@JoinColumn(name="individual", nullable=true)
+	private Individual individual;
 
 	@Size(min=1, max=150)
-	@Column(name="\"nameOrDenomination\"", nullable=false)
-	private String nameOrDenomination;
+	@Column(name="\"name\"", nullable=false)
+	private String name;
 
-	@Size(min=1, max=1)
-	@Column(name="\"type\"", nullable=false)
-	private String type;
-	
-	@Size(min=1, max=32)
-	@Column(name="\"fancyName\"", nullable=true)
-	private String fancyName;
-	
 	@Size(min=1, max=150)
 	@Column(name="\"motherName\"", nullable=true)
 	private String motherName;
@@ -92,51 +84,27 @@ public class ModifiedAddressEdificationDweller implements Serializable {
 
 	}
 
-	public Subject getSubject() {
+	public Individual getIndividual() {
 
-		return subject;
+		return individual;
 
 	}
 
-	public void setSubject(Subject subject) {
+	public void setIndividual(Individual individual) {
 
-		this.subject = subject;
+		this.individual = individual;
 
 	}
 	
-	public String getNameOrDenomination() {
+	public String getName() {
 		
-		return nameOrDenomination;
-		
-	}
-
-	public void setNameOrDenomination(String nameOrDenomination) {
-		
-		this.nameOrDenomination = nameOrDenomination;
+		return name;
 		
 	}
 
-	public String getType() {
+	public void setName(String name) {
 		
-		return type;
-		
-	}
-
-	public void setType(String type) {
-		
-		this.type = type;
-		
-	}
-
-	public String getFancyName() {
-		
-		return fancyName;
-		
-	}
-
-	public void setFancyName(String fancyName) {
-		
-		this.fancyName = fancyName;
+		this.name = name;
 		
 	}
 
