@@ -50,9 +50,9 @@ public class AccountEndPoint {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
-		session.beginTransaction();
-
 		try {
+
+			session.beginTransaction();
 
 			Token token = AccountManager.authenticate(session,
 					credential.getLogin(), 
@@ -184,39 +184,57 @@ public class AccountEndPoint {
 
 		String tokenIdentifier = authorizationHeader.substring("Bearer".length()).trim();
 
-		Session session = HibernateUtil.getSessionFactory().openSession();		
-
-		TokenDAO tokenDAO = new TokenDAO(session);
-
-		Token token = tokenDAO.retrieve(tokenIdentifier);
-
-		User user = (User) token.getSubjectSubject().getIdentifier().getChild();
-
 		List<GovernmentBean001> governmentBeans = new ArrayList<GovernmentBean001>();
 
-		for (SubjectSubject subjectSubject : user.getParents()){
-			
-			if (subjectSubject.getIdentifier().getParent() instanceof Government) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
 
-				Government government = (Government) subjectSubject.getIdentifier().getParent();
+		try {
 
-				if (!subjectSubject.getLevel().equals(Level.UNDEFINED) && government.getActive()) {
+			TokenDAO tokenDAO = new TokenDAO(session);
 
-					GovernmentBean001 governmentBean = new GovernmentBean001();
+			Token token = tokenDAO.retrieve(tokenIdentifier);
 
-					governmentBean.setIdentifier(government.getIdentifier());
+			User user = (User) token.getSubjectSubject().getIdentifier().getChild();
 
-					governmentBean.setActive(government.getActive());
+			for (SubjectSubject subjectSubject : user.getParents()){
 
-					governmentBean.setDenomination(government.getDenomination());
+				if (subjectSubject.getIdentifier().getParent() instanceof Government) {
 
-					governmentBean.setFancyName(government.getFancyName());
+					Government government = (Government) subjectSubject.getIdentifier().getParent();
 
-					governmentBeans.add(governmentBean);
+					if (!subjectSubject.getLevel().equals(Level.UNDEFINED) && government.getActive()) {
+
+						GovernmentBean001 governmentBean = new GovernmentBean001();
+
+						governmentBean.setIdentifier(government.getIdentifier());
+
+						governmentBean.setActive(government.getActive());
+
+						governmentBean.setDenomination(government.getDenomination());
+
+						governmentBean.setFancyName(government.getFancyName());
+
+						governmentBeans.add(governmentBean);
+
+					}
 
 				}
 
 			}
+
+		} catch (Exception e) {
+
+			log.error(AccountEndPoint.class.getSimpleName() + ": " + 
+					e.getMessage(), 
+					e.getCause());
+
+			return Response.status(Status.INTERNAL_SERVER_ERROR).
+					entity(new ExceptionBean001(I18N.get(I18N.INTERNAL_SERVER_ERROR))).
+					build();
+
+		} finally {
+
+			session.close();
 
 		}
 
@@ -240,9 +258,9 @@ public class AccountEndPoint {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();		
 
-		session.beginTransaction();
-
 		try {
+
+			session.beginTransaction();
 
 			Token token = AccountManager.changeGovernment(
 					session,

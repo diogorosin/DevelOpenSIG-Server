@@ -52,10 +52,10 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
-		session.beginTransaction();
-
 		try {
-			
+
+			session.beginTransaction();
+
 			//BUSCA O TOKEN NO CABECALHO DA REQUISICAO
 			String authorizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
 

@@ -11,11 +11,14 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
+import br.com.developen.sig.bean.DownloadDatasetBean;
+import br.com.developen.sig.bean.ExceptionBean001;
 import br.com.developen.sig.orm.Address;
 import br.com.developen.sig.orm.AddressEdification;
 import br.com.developen.sig.orm.AddressEdificationDweller;
@@ -37,6 +40,7 @@ import br.com.developen.sig.orm.Type;
 import br.com.developen.sig.orm.TypeDAO;
 import br.com.developen.sig.util.DownloadDatasetBuilder001;
 import br.com.developen.sig.util.HibernateUtil;
+import br.com.developen.sig.util.I18N;
 
 @Path("/download")
 public class DownloadEndPoint {
@@ -54,58 +58,62 @@ public class DownloadEndPoint {
 
 		String tokenIdentifier = authorizationHeader.substring("Bearer".length()).trim();
 
-		Session session = HibernateUtil.getSessionFactory().openSession();		
+		DownloadDatasetBean downloadDatasetBean = null;
 
-		TokenDAO tokenDAO = new TokenDAO(session);
+		Session session = HibernateUtil.getSessionFactory().openSession();
 
-		Token token = tokenDAO.retrieve(tokenIdentifier);
+		try {
 
+			TokenDAO tokenDAO = new TokenDAO(session);
 
-		List<Type> types = new TypeDAO(session).list();
+			Token token = tokenDAO.retrieve(tokenIdentifier);
+			
+			List<Type> types = new TypeDAO(session).list();
 
-		List<Agency> agencies = new AgencyDAO(session).list();
+			List<Agency> agencies = new AgencyDAO(session).list();
 
-		List<Subject> subjects = new ArrayList<>();
+			List<Subject> subjects = new ArrayList<>();
 
-		List<Country> countries = new CountryDAO(session).list();
+			List<Country> countries = new CountryDAO(session).list();
 
-		List<State> states = new StateDAO(session).list();
+			List<State> states = new StateDAO(session).list();
 
-		List<City> cities = new CityDAO(session).list();
+			List<City> cities = new CityDAO(session).list();
 
-		List<Address> addresses = new ArrayList<>();
+			List<Address> addresses = new ArrayList<>();
 
-		List<AddressEdification> addressesEdifications = new ArrayList<>();
+			List<AddressEdification> addressesEdifications = new ArrayList<>();
 
-		List<AddressEdificationDweller> addressesEdificationsDwellers = new ArrayList<>();
+			List<AddressEdificationDweller> addressesEdificationsDwellers = new ArrayList<>();
 
-
-		for (GovernmentCity governmentCity : ((Government) token.
-				getSubjectSubject().
-				getIdentifier().
-				getParent()).
-				getCities()) {
-
-			for (Address address : governmentCity.
+			for (GovernmentCity governmentCity : ((Government) token.
+					getSubjectSubject().
 					getIdentifier().
-					getCity().
-					getAddresses()) {
+					getParent()).
+					getCities()) {
 
-				addresses.add(address);
+				for (Address address : governmentCity.
+						getIdentifier().
+						getCity().
+						getAddresses()) {
 
-				for (AddressEdification addressEdification : address.getEdifications()) {
+					addresses.add(address);
 
-					addressesEdifications.add(addressEdification);
+					for (AddressEdification addressEdification : address.getEdifications()) {
 
-					for (AddressEdificationDweller addressEdificationDweller : addressEdification.getDwellers()) {
+						addressesEdifications.add(addressEdification);
 
-						addressesEdificationsDwellers.add(addressEdificationDweller);
+						for (AddressEdificationDweller addressEdificationDweller : addressEdification.getDwellers()) {
 
-						Subject subject = addressEdificationDweller.getIndividual();
+							addressesEdificationsDwellers.add(addressEdificationDweller);
 
-						if (!subjects.contains(subject))
+							Subject subject = addressEdificationDweller.getIndividual();
 
-							subjects.add(subject);
+							if (!subjects.contains(subject))
+
+								subjects.add(subject);
+
+						}
 
 					}
 
@@ -113,25 +121,37 @@ public class DownloadEndPoint {
 
 			}
 
-		}		
+			downloadDatasetBean = new DownloadDatasetBuilder001().
+					withTypes(types).
+					withAgencies(agencies).
+					withSubjects(subjects).				
+					withCountries(countries).
+					withStates(states).
+					withCities(cities).
+					withAddresses(addresses).
+					withAddressesEdifications(addressesEdifications).
+					withAddressesEdificationsDwellers(addressesEdificationsDwellers).
+					build();
 
-		
-		return Response.status(Response.Status.OK).
-				entity(new DownloadDatasetBuilder001().
-						withTypes(types).
-						withAgencies(agencies).
-						withSubjects(subjects).				
-						withCountries(countries).
-						withStates(states).
-						withCities(cities).
-						withAddresses(addresses).
-						withAddressesEdifications(addressesEdifications).
-						withAddressesEdificationsDwellers(addressesEdificationsDwellers).
-						build()).
-				build(); 
+		} catch (Exception e) {
 
-		
+			log.error(DownloadEndPoint.class.getSimpleName() + ": " + 
+					e.getMessage(), 
+					e.getCause());
+
+			return Response.status(Status.INTERNAL_SERVER_ERROR).
+					entity(new ExceptionBean001(I18N.get(I18N.INTERNAL_SERVER_ERROR))).
+					build();
+
+		} finally {
+
+			session.close();
+
+		} 
+
+		return Response.status(Response.Status.OK).entity(downloadDatasetBean).build(); 
+
 	}
-	
+
 
 }

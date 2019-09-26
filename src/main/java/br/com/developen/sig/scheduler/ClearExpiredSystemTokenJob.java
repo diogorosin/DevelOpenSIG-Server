@@ -1,5 +1,7 @@
 package br.com.developen.sig.scheduler;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -9,18 +11,35 @@ import br.com.developen.sig.util.HibernateUtil;
 
 public class ClearExpiredSystemTokenJob implements Job {
 
-	@Override
+	static Logger log = LogManager.getRootLogger();	
+
 	public void execute(final JobExecutionContext ctx) throws JobExecutionException {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
-		session.beginTransaction();
+		try {
 
-		session.createStoredProcedureQuery("ClearExpiredToken").execute();
+			session.beginTransaction();
 
-		session.getTransaction().commit();
+			session.createStoredProcedureCall("ClearExpiredToken").getOutputs();
 
-		session.close(); 
+			session.getTransaction().commit();
+
+		} catch (Exception e) {
+
+			if (session.getTransaction().isActive())
+
+				session.getTransaction().rollback();
+
+			log.error(ClearExpiredSystemTokenJob.class.getSimpleName() + ": " + 
+					e.getMessage(), 
+					e.getCause());
+
+		} finally {
+
+			session.close();
+
+		}
 
 	}
 

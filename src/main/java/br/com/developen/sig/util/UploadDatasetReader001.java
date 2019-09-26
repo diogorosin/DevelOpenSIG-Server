@@ -94,7 +94,7 @@ public class UploadDatasetReader001 {
 			modifiedAddress.setLatitude(modifiedAddressBean.getLatitude());
 
 			modifiedAddress.setLongitude(modifiedAddressBean.getLongitude());
-			
+
 			modifiedAddress.setEdifications(new ArrayList<ModifiedAddressEdification>());
 
 			//EDIFICATIONS
@@ -187,11 +187,7 @@ public class UploadDatasetReader001 {
 
 			}
 
-			session.beginTransaction();
-			
 			modifiedAddressDAO.create(modifiedAddress);
-			
-			session.getTransaction().commit();
 
 			getResult().
 			getModifiedAddressesThatWasImported().
