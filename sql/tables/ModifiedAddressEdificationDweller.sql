@@ -28,7 +28,7 @@ CREATE TABLE "ModifiedAddressEdificationDweller" (
 
     "gender" VARCHAR(1),
 
-	"from" TIMESTAMP NOT NULL,
+	"from" TIMESTAMP,
 
 	"to" TIMESTAMP
 

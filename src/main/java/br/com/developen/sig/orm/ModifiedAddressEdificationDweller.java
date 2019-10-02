@@ -65,7 +65,7 @@ public class ModifiedAddressEdificationDweller implements Serializable {
 	private String gender;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="\"from\"", nullable = false)
+	@Column(name="\"from\"", nullable = true)
 	private Date from;
 
 	@Temporal(TemporalType.TIMESTAMP)

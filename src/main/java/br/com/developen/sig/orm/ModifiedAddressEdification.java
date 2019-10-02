@@ -36,7 +36,7 @@ public class ModifiedAddressEdification implements Serializable {
 	private String reference;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="\"from\"", nullable = false)
+	@Column(name="\"from\"", nullable = true)
 	private Date from;
 
 	@Temporal(TemporalType.TIMESTAMP)
