@@ -8,7 +8,7 @@ CREATE TABLE "ModifiedAddressEdification" (
 
 	"reference" VARCHAR(10),
 
-    "from" TIMESTAMP NOT NULL,
+    "from" TIMESTAMP,
 
 	"to" TIMESTAMP
 

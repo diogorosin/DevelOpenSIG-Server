@@ -7,7 +7,6 @@ public class UserBean001 extends IndividualBean001{
 
 	private String password;
 	
-
 	public String getLogin() {
 
 		return login;

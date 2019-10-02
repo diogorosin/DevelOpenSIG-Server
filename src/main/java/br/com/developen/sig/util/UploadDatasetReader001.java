@@ -1,6 +1,7 @@
 package br.com.developen.sig.util;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -121,6 +122,10 @@ public class UploadDatasetReader001 {
 
 				modifiedAddressEdification.setReference(modifiedAddressEdificationBean.getReference());
 
+/*				if (modifiedAddressEdificationBean.getFrom()==null)
+
+					modifiedAddressEdificationBean.setFrom(new Date());  */
+
 				modifiedAddressEdification.setFrom(modifiedAddressEdificationBean.getFrom());
 
 				modifiedAddressEdification.setTo(modifiedAddressEdificationBean.getTo());
@@ -174,6 +179,10 @@ public class UploadDatasetReader001 {
 								cityDAO.retrieve(modifiedAddressEdificationDwellerBean.getBirthPlace()));
 
 					modifiedAddressEdificationDweller.setGender(modifiedAddressEdificationDwellerBean.getGender());
+
+/*					if (modifiedAddressEdificationDwellerBean.getFrom()==null)
+
+						modifiedAddressEdificationDwellerBean.setFrom(new Date()); */
 
 					modifiedAddressEdificationDweller.setFrom(modifiedAddressEdificationDwellerBean.getFrom());
 
