@@ -1,20 +1,17 @@
 package br.com.developen.sig.orm;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -24,33 +21,53 @@ import javax.validation.constraints.Size;
 	@NamedQuery(
 			name = City.FIND_ALL,
 			query = "FROM City C"
-	)
+	),
+	@NamedQuery(
+			name = City.COUNT_ALL,
+			query = "SELECT COUNT(C) FROM City C"
+			),
+	@NamedQuery(
+			name = City.FIND_BY_DENOMINATION,
+			query = "FROM City C WHERE UNACCENT(LOWER(C.denomination)) LIKE UNACCENT(LOWER(:denomination))"
+	),
+	@NamedQuery(
+			name = City.COUNT_BY_DENOMINATION,
+			query = "SELECT COUNT(C) FROM City C WHERE UNACCENT(LOWER(C.denomination)) LIKE UNACCENT(LOWER(:denomination))"
+			)
 })
 public class City implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	public static final String FIND_ALL = "City.findAll";
+	
+	public static final String COUNT_ALL = "City.countAll";
+		
+	public static final String FIND_BY_DENOMINATION = "City.findByDenomination";
+	
+	public static final String COUNT_BY_DENOMINATION = "City.countByDenomination";
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer identifier;
 
-	@NotNull
 	@Size(min=1, max=40)
-	@Column(name="\"denomination\"")	
+	@Column(name="\"denomination\"", nullable=false)	
 	private String denomination;
 
-	@NotNull
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="state", nullable=false)
+	@ManyToOne(optional=false)
+	@JoinColumn(name="state")
 	private State state;
 
-	@OneToMany(
-			fetch=FetchType.LAZY,
-			mappedBy="city", 
-			cascade={CascadeType.ALL}, 
-			orphanRemoval=true)
-	private List<Address> addresses;
+	@Column(name="\"ibge\"", nullable=false)
+	private Integer ibge;
+
+	@Column(name="\"postalCodeBegin\"", nullable=false)
+	private Integer postalCodeBegin;
+	
+	@Column(name="\"postalCodeEnd\"", nullable=false)
+	private Integer postalCodeEnd;
+
 
 	public Integer getIdentifier() {
 
@@ -88,19 +105,42 @@ public class City implements Serializable{
 		
 	}
 
-	public List<Address> getAddresses() {
+	public Integer getIbge() {
 		
-		return addresses;
+		return ibge;
 		
 	}
 
-	public void setAddresses(List<Address> addresses) {
-
-		this.addresses = addresses;
-
+	public void setIbge(Integer ibge) {
+		
+		this.ibge = ibge;
+		
 	}
 
-	@Override
+	public Integer getPostalCodeBegin() {
+		
+		return postalCodeBegin;
+		
+	}
+
+	public void setPostalCodeBegin(Integer postalCodeBegin) {
+		
+		this.postalCodeBegin = postalCodeBegin;
+		
+	}
+
+	public Integer getPostalCodeEnd() {
+		
+		return postalCodeEnd;
+		
+	}
+
+	public void setPostalCodeEnd(Integer postalCodeEnd) {
+		
+		this.postalCodeEnd = postalCodeEnd;
+		
+	}
+
 	public int hashCode() {
 
 		final int prime = 31;
@@ -110,7 +150,6 @@ public class City implements Serializable{
 
 	}
 
-	@Override
 	public boolean equals(Object obj) {
 
 		if (this == obj)

@@ -1,61 +1,57 @@
 package br.com.developen.sig.bean;
 
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class TokenBean001 {
 
-	private String identifier;
+	private Map<Integer, UserBean001> user;
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ssZ")
+	private Date expirre;
+
+	private String note;
 	
-	private GovernmentBean001 government;
+	public Map<Integer, UserBean001> getUser() {
 
-	private Integer level;
+		if (user==null)
 
-	private UserBean001 user;
+			user = new LinkedHashMap<Integer, UserBean001>();
 
-	public String getIdentifier() {
-
-		return identifier;
-
-	}
-
-	public void setIdentifier(String identifier) {
-
-		this.identifier = identifier;
-
-	}
-
-	public GovernmentBean001 getGovernment() {
-		
-		return government;
-		
-	}
-
-	public void setGovernment(GovernmentBean001 government) {
-		
-		this.government = government;
-		
-	}
-
-	public UserBean001 getUser() {
-		
 		return user;
-		
+
 	}
 
-	public void setUser(UserBean001 user) {
+	public void setUser(Map<Integer, UserBean001> user) {
 
 		this.user = user;
 
 	}
 
-	public Integer getLevel() {
+	public Date getExpirre() {
+		
+		return expirre;
+		
+	}
 
-		return level;
+	public void setExpirre(Date expirre) {
+
+		this.expirre = expirre;
 
 	}
 
-	public void setLevel(Integer level) {
+	public String getNote() {
 
-		this.level = level;
+		return note;
+
+	}
+
+	public void setNote(String note) {
+
+		this.note = note;
 
 	}
 

@@ -1,5 +1,5 @@
 /* EXCLUI FUNCOES */
-\i script/DropFunctions.sql;
+--\i script/DropFunctions.sql;
 
 /* EXCLUI VIEWS */
 \i script/DropViews.sql;
@@ -20,12 +20,11 @@
 \i script/CreateTables.sql;
 
 /* POPULA */
-\i data/InsertType.sql;
-\i data/InsertAgency.sql;
-\i data/InsertCity.sql;
+\i data/InsertLevel.sql;
 \i data/InsertCountry.sql;
 \i data/InsertState.sql;
-\i data/InsertSubject.sql;
+\i data/InsertCity.sql;
+\i data/InsertOrganization.sql;
 
 /* CRIA CONSTRAINS */
 \i script/CreateConstrains.sql
@@ -37,4 +36,4 @@
 \i script/CreateViews.sql
 
 /* CRIA FUNCOES */
-\i script/CreateFunctions.sql
+--\i script/CreateFunctions.sql

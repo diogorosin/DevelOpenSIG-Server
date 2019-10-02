@@ -1,9 +1,15 @@
 CREATE TABLE "City" (
 
-	"identifier" INTEGER NOT NULL,
-	
+	"identifier" INTEGER DEFAULT NEXTVAL('CitySequence') NOT NULL,
+
 	"denomination" VARCHAR(40) NOT NULL,
+
+	"state" INTEGER NOT NULL,
+
+	"ibge" INTEGER NOT NULL,
 	
-	"state" INTEGER NOT NULL
+	"postalCodeBegin" INTEGER NOT NULL,
+	
+	"postalCodeEnd" INTEGER NOT NULL
 
 );

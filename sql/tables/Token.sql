@@ -1,11 +1,11 @@
 CREATE TABLE "Token" (
 
-    "identifier" VARCHAR(10) NOT NULL,
+    "identifier" VARCHAR(64) NOT NULL,
 
-    "government" INTEGER NOT NULL,
+    "user" INTEGER,
 
-    "user" INTEGER NOT NULL,
+    "expire" TIMESTAMP,
 
-    "expire" TIMESTAMP
+    "note" TEXT
 
 );

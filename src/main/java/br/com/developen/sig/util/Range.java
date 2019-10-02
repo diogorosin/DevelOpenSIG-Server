@@ -6,11 +6,6 @@ public class Range {
 
 	private int end;
 
-	/**
-	 * Construct a byte range.
-	 * @param start Start of the byte range.
-	 * @param end End of the byte range.
-	 */
 	public Range(int start, int end) {
 
 		this.setStart(start);

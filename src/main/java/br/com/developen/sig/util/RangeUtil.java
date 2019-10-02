@@ -8,7 +8,7 @@ import br.com.developen.sig.exception.InvalidRangeException;
 public class RangeUtil {
 
 	/* REQUEST------------------- 
-	GET http://localhost:8080/pocketpos-server/rest/company HTTP/1.1
+	GET http://localhost:8080/pre/rest/organization HTTP/1.1
 	Accept-Encoding: gzip,deflate
 	Range: rows=1-1
 	Host: localhost:8080
@@ -21,7 +21,7 @@ public class RangeUtil {
 	#status#	HTTP/1.1 206
 	Content-Type	application/json
 	Accept-Ranges	rows
-	Content-Range	rows=1-1/5
+	Content-Range	rows=1-1/5/5
 	 */
 	public static List<Range> splitRanges(String rangeString, int length) throws InvalidRangeException {
 

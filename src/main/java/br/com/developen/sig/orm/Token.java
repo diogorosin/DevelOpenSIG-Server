@@ -5,16 +5,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -40,20 +39,20 @@ public class Token implements Serializable {
 	public static final String CLEAR_EXPIRED_TOKEN_JOB = "Token.clearExpiredTokenJob";
 
 	@Id
-	@Size(min=10, max=10)
-	@Pattern(regexp = "[A-Z0-9]{10,10}")
+	@Size(min=64, max=64)
+	@Pattern(regexp = "[a-zA-Z0-9]{64,64}")
 	private String identifier;
 
-	@Valid
-	@ManyToOne
-	@JoinColumns({
-		@JoinColumn(name="\"government\"", referencedColumnName="parent"),
-		@JoinColumn(name="\"user\"", referencedColumnName="child")})
-	private SubjectSubject subjectSubject;
+	@ManyToOne(fetch=FetchType.LAZY, optional=true)
+	@JoinColumn(name="\"user\"", nullable=true)
+	private User user;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false)
+	@Column(name="\"expire\"", nullable = true)
 	private Date expire;
+	
+	@Column(name="\"note\"", columnDefinition = "Text")
+	private String note;
 
 	public Token() {
 
@@ -72,15 +71,15 @@ public class Token implements Serializable {
 
 	}
 
-	public SubjectSubject getSubjectSubject() {
+	public User getUser() {
 
-		return subjectSubject;
+		return user;
 
 	}
 
-	public void setSubjectSubject(SubjectSubject subjectSubject) {
+	public void setUser(User user) {
 
-		this.subjectSubject = subjectSubject;
+		this.user = user;
 
 	}
 
@@ -93,6 +92,18 @@ public class Token implements Serializable {
 	public void setExpire(Date expire) {
 
 		this.expire = expire;
+
+	}
+
+	public String getNote() {
+
+		return note;
+
+	}
+
+	public void setNote(String note) {
+
+		this.note = note;
 
 	}
 
@@ -120,12 +131,6 @@ public class Token implements Serializable {
 		} else if (!identifier.equals(other.identifier))
 			return false;
 		return true;
-
-	}
-
-	public String toString(){
-
-		return "(" + getIdentifier() + ")";
 
 	}
 

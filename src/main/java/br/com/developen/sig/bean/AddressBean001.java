@@ -1,119 +1,101 @@
 package br.com.developen.sig.bean;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class AddressBean001 implements Serializable {
-
-	private static final long serialVersionUID = 1L;
-
-	private Integer identifier;
+public class AddressBean001 {
 
 	private String denomination;
-	
-	private String number;
-	
-	private String reference;
+
+	private String number;	
+
+	private String complement;
 
 	private String district;
 
 	private Integer postalCode;
 
-	private Integer city;
+	private Map<Integer, CityBean001> city;
 	
 	private Double latitude;
 
 	private Double longitude;
 
-	private Integer verifiedBy;
-
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")  
-	private Date verifiedAt;
-
-	public Integer getIdentifier() {
-		
-		return identifier;
-		
-	}
-
-	public void setIdentifier(Integer identifier) {
-		
-		this.identifier = identifier;
-		
-	}
-
 	public String getDenomination() {
-		
+
 		return denomination;
-		
+
 	}
 
 	public void setDenomination(String denomination) {
-		
+
 		this.denomination = denomination;
-		
+
 	}
 
 	public String getNumber() {
-		
+
 		return number;
-		
+
 	}
 
 	public void setNumber(String number) {
-		
+
 		this.number = number;
-		
+
 	}
 
-	public String getReference() {
-		
-		return reference;
-		
+	public String getComplement() {
+
+		return complement;
+
 	}
 
-	public void setReference(String reference) {
-		
-		this.reference = reference;
-		
+	public void setComplement(String complement) {
+
+		this.complement = complement;
+
 	}
 
 	public String getDistrict() {
-		
+
 		return district;
-		
+
 	}
 
 	public void setDistrict(String district) {
-		
+
 		this.district = district;
-		
+
 	}
 
 	public Integer getPostalCode() {
-		
+
 		return postalCode;
-		
+
 	}
 
 	public void setPostalCode(Integer postalCode) {
-		
+
 		this.postalCode = postalCode;
-		
+
 	}
 
-	public Integer getCity() {
-		
+	public Map<Integer, CityBean001> getCity() {
+
+		if (this.city == null)
+
+			this.city = new LinkedHashMap<Integer, CityBean001>();
+
 		return city;
-		
+
 	}
 
-	public void setCity(Integer city) {
-		
+	public void setCity(Map<Integer, CityBean001> city) {
+
 		this.city = city;
-		
+
 	}
 
 	public Double getLatitude() {
@@ -138,57 +120,6 @@ public class AddressBean001 implements Serializable {
 		
 		this.longitude = longitude;
 		
-	}
-
-	public Integer getVerifiedBy() {
-		
-		return verifiedBy;
-		
-	}
-
-	public void setVerifiedBy(Integer verifiedBy) {
-		
-		this.verifiedBy = verifiedBy;
-
-	}
-
-	public Date getVerifiedAt() {
-
-		return verifiedAt;
-
-	}
-
-	public void setVerifiedAt(Date verifiedAt) {
-
-		this.verifiedAt = verifiedAt;
-
-	}
-
-	public int hashCode() {
-		
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
-		return result;
-		
-	}
-
-	public boolean equals(Object obj) {
-		
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AddressBean001 other = (AddressBean001) obj;
-		if (identifier == null) {
-			if (other.identifier != null)
-				return false;
-		} else if (!identifier.equals(other.identifier))
-			return false;
-		return true;
-
-	}
+	}	
 
 }

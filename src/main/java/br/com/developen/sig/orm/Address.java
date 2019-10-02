@@ -1,8 +1,6 @@
 package br.com.developen.sig.orm;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,10 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 
@@ -30,17 +25,17 @@ public class Address implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer identifier;
 
-	@Size(min=1, max=100)
+	@Size(min=1, max=200)
 	@Column(name="\"denomination\"", nullable=true)
 	private String denomination;
 
-	@Size(min=1, max=5)	
+	@Size(min=1, max=6)	
 	@Column(name="\"number\"", nullable=true)	
 	private String number;	
 
-	@Size(min=1, max=10)	
-	@Column(name="\"reference\"", nullable=true)	
-	private String reference;
+	@Size(min=1, max=20)	
+	@Column(name="\"complement\"", nullable=true)	
+	private String complement;
 
 	@Size(min=1, max=100)	
 	@Column(name="\"district\"", nullable=true)	
@@ -49,30 +44,15 @@ public class Address implements Serializable{
 	@Column(name="\"postalCode\"", nullable=true)
 	private Integer postalCode;
 
-	@ManyToOne(optional=false)
-	@JoinColumn(name="city", nullable=false)
+	@ManyToOne(fetch=FetchType.LAZY, optional=false, cascade={CascadeType.ALL})
+	@JoinColumn(name="city", nullable=true)
 	private City city;
-
-	@Column(name="\"latitude\"", nullable=false)	
+	
+	@Column(name="\"latitude\"", nullable=true)	
 	private Double latitude;
 
-	@Column(name="\"longitude\"", nullable=false)
-	private Double longitude;
-	
-	@ManyToOne(optional=false)
-	@JoinColumn(name="\"verifiedBy\"", nullable=false)
-	private User verifiedBy;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="\"verifiedAt\"", nullable = false)
-	private Date verifiedAt;
-
-	@OneToMany(
-			fetch=FetchType.LAZY,
-			mappedBy="identifier.address", 
-			cascade={CascadeType.ALL}, 
-			orphanRemoval=true)
-	private List<AddressEdification> edifications;
+	@Column(name="\"longitude\"", nullable=true)
+	private Double longitude;	
 
 	public Integer getIdentifier() {
 
@@ -110,15 +90,15 @@ public class Address implements Serializable{
 
 	}
 
-	public String getReference() {
+	public String getComplement() {
 
-		return reference;
+		return complement;
 
 	}
 
-	public void setReference(String reference) {
+	public void setComplement(String complement) {
 
-		this.reference = reference;
+		this.complement = complement;
 
 	}
 
@@ -165,56 +145,20 @@ public class Address implements Serializable{
 	}
 
 	public void setLatitude(Double latitude) {
-
+		
 		this.latitude = latitude;
 		
 	}
 
 	public Double getLongitude() {
-
+		
 		return longitude;
-
+		
 	}
 
 	public void setLongitude(Double longitude) {
-
+		
 		this.longitude = longitude;
-
-	}
-
-	public User getVerifiedBy() {
-		
-		return verifiedBy;
-		
-	}
-
-	public void setVerifiedBy(User verifiedBy) {
-		
-		this.verifiedBy = verifiedBy;
-		
-	}
-
-	public Date getVerifiedAt() {
-		
-		return verifiedAt;
-		
-	}
-
-	public void setVerifiedAt(Date verifiedAt) {
-		
-		this.verifiedAt = verifiedAt;
-		
-	}
-
-	public List<AddressEdification> getEdifications() {
-		
-		return edifications;
-		
-	}
-
-	public void setEdifications(List<AddressEdification> edifications) {
-		
-		this.edifications = edifications;
 		
 	}
 

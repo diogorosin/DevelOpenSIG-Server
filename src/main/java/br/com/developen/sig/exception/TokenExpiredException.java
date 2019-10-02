@@ -8,7 +8,7 @@ public class TokenExpiredException extends UnauthorizedException{
 
 	public TokenExpiredException(){
 
-		super(I18N.get(I18N.INVALID_TOKEN));
+		super(I18N.get(I18N.EXPIRED_TOKEN));
 
 	}
 

@@ -1,1 +1,1 @@
---DROP VIEW IF EXISTS "SubjectView";
+--DROP VIEW IF EXISTS "CameraView";

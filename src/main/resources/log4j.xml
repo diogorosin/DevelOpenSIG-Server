@@ -3,7 +3,6 @@
 <log4j:configuration debug="true" xmlns:log4j='http://jakarta.apache.org/log4j/'>
 	<appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
 		<param name="Threshold" value="INFO" />
-<!--    <param name="File" value="${catalina.base}/logs/sig.log"/>  -->
         <param name="File" value="/var/log/developen-sig-server.log"/>
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d %-5p  [%c{1}] %m %n" />

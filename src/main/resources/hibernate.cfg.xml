@@ -20,25 +20,15 @@
 		<property name="hibernate.c3p0.timeout">1800</property>
 		<property name="hibernate.c3p0.idle_test_period">100</property>
 		<property name="hibernate.c3p0.max_statements">50</property>
-		<mapping class="br.com.developen.sig.orm.Address" />
-		<mapping class="br.com.developen.sig.orm.AddressEdification" />
-		<mapping class="br.com.developen.sig.orm.AddressEdificationDweller" />
-		<mapping class="br.com.developen.sig.orm.Type" />
-		<mapping class="br.com.developen.sig.orm.Agency" />
-		<mapping class="br.com.developen.sig.orm.City" />
-		<mapping class="br.com.developen.sig.orm.Country" />
-		<mapping class="br.com.developen.sig.orm.Government" />
-		<mapping class="br.com.developen.sig.orm.GovernmentCity" />
-		<mapping class="br.com.developen.sig.orm.Individual" />
-		<mapping class="br.com.developen.sig.orm.Level" />
-		<mapping class="br.com.developen.sig.orm.Organization" />
-		<mapping class="br.com.developen.sig.orm.State" />
-		<mapping class="br.com.developen.sig.orm.Subject" />
-		<mapping class="br.com.developen.sig.orm.SubjectSubject" />
-		<mapping class="br.com.developen.sig.orm.Token" />
-		<mapping class="br.com.developen.sig.orm.User" />
-		<mapping class="br.com.developen.sig.orm.ModifiedAddress" />
-		<mapping class="br.com.developen.sig.orm.ModifiedAddressEdification" />
-		<mapping class="br.com.developen.sig.orm.ModifiedAddressEdificationDweller" />
+	 	<mapping class="br.com.developen.sig.orm.Address"/>
+	 	<mapping class="br.com.developen.sig.orm.Contact"/>
+	 	<mapping class="br.com.developen.sig.orm.City"/>
+	 	<mapping class="br.com.developen.sig.orm.Country"/>
+	 	<mapping class="br.com.developen.sig.orm.Level"/>
+	 	<mapping class="br.com.developen.sig.orm.Organization"/>
+	 	<mapping class="br.com.developen.sig.orm.State"/>
+	 	<mapping class="br.com.developen.sig.orm.Token"/>
+	 	<mapping class="br.com.developen.sig.orm.User"/>
+	 	<mapping class="br.com.developen.sig.orm.Ticket"/>
 	</session-factory>
 </hibernate-configuration>

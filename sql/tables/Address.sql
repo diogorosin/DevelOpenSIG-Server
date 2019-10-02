@@ -2,24 +2,20 @@ CREATE TABLE "Address" (
 
 	"identifier" INTEGER DEFAULT NEXTVAL('AddressSequence') NOT NULL,
 
-	"denomination" VARCHAR(100),
+	"denomination" VARCHAR(200),
 
-	"number" VARCHAR(5),
+	"number" VARCHAR(6),
 
-	"reference" VARCHAR(50),
+	"complement" VARCHAR(20),
 
 	"district" VARCHAR(100),
 
 	"postalCode" INTEGER,
 
-	"city" INTEGER NOT NULL,
+	"city" INTEGER,
 
-    "latitude" FLOAT NOT NULL,
+	"latitude" FLOAT,
 
-    "longitude" FLOAT NOT NULL,
-
-	"verifiedAt" TIMESTAMP NOT NULL,
-
-	"verifiedBy" INTEGER NOT NULL
+    "longitude" FLOAT	
 
 );

@@ -1,32 +1,32 @@
--- MODULO....: GESTAO DE PESSOAS
--- FONTE.....: IBGE (ftp://geoftp.ibge.gov.br/Organizacao/Divisao_Territorial/2009/)
-
 DELETE FROM "State";
-INSERT INTO "State" ("identifier", "denomination", "acronym", "country") VALUES
-(1, 'Acre', 'AC', 1),
-(2, 'Alagoas', 'AL', 1),
-(3, 'Amazonas', 'AM', 1),
-(4, 'Amapá', 'AP', 1),
-(5, 'Bahia', 'BA', 1),
-(6, 'Ceará', 'CE', 1),
-(7, 'Distrito Federal', 'DF', 1),
-(8, 'Espírito Santo', 'ES', 1),
-(9, 'Goiás', 'GO', 1),
-(10, 'Maranhão', 'MA', 1),
-(11, 'Minas Gerais', 'MG', 1),
-(12, 'Mato Grosso do Sul', 'MS', 1),
-(13, 'Mato Grosso', 'MT', 1),
-(14, 'Pará', 'PA', 1),
-(15, 'Paraíba', 'PB', 1),
-(16, 'Pernambuco', 'PE', 1),
-(17, 'Piauí', 'PI', 1),
-(18, 'Paraná', 'PR', 1),
-(19, 'Rio de Janeiro', 'RJ', 1),
-(20, 'Rio Grande do Norte', 'RN', 1),
-(21, 'Rondônia', 'RO', 1),
-(22, 'Roraima', 'RR', 1),
-(23, 'Rio Grande do Sul', 'RS', 1),
-(24, 'Santa Catarina', 'SC', 1),
-(25, 'Sergipe', 'SE', 1),
-(26, 'São Paulo', 'SP', 1),
-(27, 'Tocantins', 'TO', 1);
+
+INSERT INTO "State" ("identifier", "denomination", "acronym", "ibge", "country") VALUES 
+(1, 'Rondônia', 'RO', 11, 31),
+(2, 'Acre', 'AC', 12, 31),
+(3, 'Amazonas', 'AM', 13, 31),
+(4, 'Roraima', 'RR', 14, 31),
+(5, 'Pará', 'PA', 15, 31),
+(6, 'Amapá', 'AP', 16, 31),
+(7, 'Tocantins', 'TO', 17, 31),
+(8, 'Maranhão', 'MA', 21, 31),
+(9, 'Piauí', 'PI', 22, 31),
+(10, 'Ceará', 'CE', 23, 31),
+(11, 'Rio Grande do Norte', 'RN', 24, 31),
+(12, 'Paraíba', 'PB', 25, 31),
+(13, 'Pernambuco', 'PE', 26, 31),
+(14, 'Alagoas', 'AL', 27, 31),
+(15, 'Sergipe', 'SE', 28, 31),
+(16, 'Bahia', 'BA', 29, 31),
+(17, 'Minas Gerais', 'MG', 31, 31),
+(18, 'Espírito Santo', 'ES', 32, 31),
+(19, 'Rio de Janeiro', 'RJ', 33, 31),
+(20, 'São Paulo', 'SP', 35, 31),
+(21, 'Paraná', 'PR', 41, 31),
+(22, 'Santa Catarina', 'SC', 42, 31),
+(23, 'Rio Grande do Sul', 'RS', 43, 31),
+(24, 'Mato Grosso do Sul', 'MS', 50, 31),
+(25, 'Mato Grosso', 'MT', 51, 31),
+(26, 'Goiás', 'GO', 52, 31),
+(27, 'Distrito Federal', 'DF', 53, 31);
+
+ALTER SEQUENCE StateSequence RESTART WITH 28;

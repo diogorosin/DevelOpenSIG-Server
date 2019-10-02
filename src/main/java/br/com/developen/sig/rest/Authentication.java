@@ -7,13 +7,13 @@ import java.lang.annotation.Target;
 
 import javax.ws.rs.NameBinding;
 
-import br.com.developen.sig.orm.Level;
+import br.com.developen.sig.util.Constants;
 
 @NameBinding
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})
 public @interface Authentication {
 
-	Level level() default Level.AGENT;
+	int level() default Constants.LEVEL_BASIC;
 
 }

@@ -4,46 +4,37 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
 @Entity
 @Table(name="\"State\"")
-@NamedQueries({
-	@NamedQuery(
-			name = State.FIND_ALL,
-			query = "FROM State S"
-	)
-})
 public class State implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final String FIND_ALL = "State.findAll";
-
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer identifier;
 
-	@NotNull
 	@Size(min=1, max=2)
-	@Column(name="\"acronym\"")	
+	@Column(name="\"acronym\"", nullable=false)	
 	private String acronym;
 
-	@NotNull
 	@Size(min=1, max=20)
-	@Column(name="\"denomination\"")
+	@Column(name="\"denomination\"", nullable=false)
 	private String denomination;
 
-	@NotNull
-	@ManyToOne(fetch=FetchType.EAGER)
+	@Column(name="\"ibge\"", nullable=false)
+	private Integer ibge;
+
+	@ManyToOne(optional=false)
 	@JoinColumn(name="country", nullable=false)
 	private Country country;
 
@@ -88,6 +79,18 @@ public class State implements Serializable {
 
 	}
 
+	public Integer getIbge() {
+
+		return ibge;
+
+	}
+
+	public void setIbge(Integer ibge) {
+
+		this.ibge = ibge;
+
+	}
+
 	public Country getCountry() {
 
 		return this.country;
@@ -100,7 +103,6 @@ public class State implements Serializable {
 
 	}
 
-	@Override
 	public int hashCode() {
 
 		final int prime = 31;
@@ -110,7 +112,6 @@ public class State implements Serializable {
 
 	}
 
-	@Override
 	public boolean equals(Object obj) {
 
 		if (this == obj)

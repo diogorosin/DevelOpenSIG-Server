@@ -1,6 +1,6 @@
 CREATE TABLE "Country" (
 
-	"identifier" INTEGER NOT NULL,
+	"identifier" INTEGER DEFAULT NEXTVAL('CountrySequence') NOT NULL,
 
 	"denomination" VARCHAR(50) NOT NULL,
 

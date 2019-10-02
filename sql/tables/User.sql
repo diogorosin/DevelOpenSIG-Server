@@ -1,11 +1,25 @@
 CREATE TABLE "User" (
 
-    "individual" INTEGER NOT NULL,
+    "identifier" INTEGER DEFAULT NEXTVAL('UserSequence') NOT NULL,
 
-    "login" VARCHAR(254) NOT NULL,
+    "active" BOOLEAN NOT NULL,
 
-    "password" VARCHAR(64) NOT NULL,
+    "image" VARCHAR(200),
 
-    "lastLoggedIn" INTEGER
+    "address" INTEGER NOT NULL,
+
+    "contact" INTEGER NOT NULL,
+
+	"name" VARCHAR(100) NOT NULL,
+
+    "login" VARCHAR(254),
+
+    "password" VARCHAR(64),
+
+	"organization" INTEGER NOT NULL,
+
+	"level" INTEGER NOT NULL,
+
+	"secret" VARCHAR(32)  
 
 );

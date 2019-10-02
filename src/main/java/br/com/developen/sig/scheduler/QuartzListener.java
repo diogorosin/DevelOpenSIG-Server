@@ -7,7 +7,6 @@ import org.quartz.CronScheduleBuilder;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
-import org.quartz.SimpleScheduleBuilder;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.ee.servlet.QuartzInitializerListener;
@@ -29,43 +28,18 @@ public class QuartzListener extends QuartzInitializerListener {
 
             Scheduler scheduler = factory.getScheduler();
 
-           
-            JobDetail clearExpiredSystemTokenJobDetail = JobBuilder.
-            		newJob(ClearExpiredSystemTokenJob.class).
-            		build();
+            JobDetail jobDetail = JobBuilder.newJob(ClearExpiredSystemTokenJob.class).build();
 
-            Trigger clearExpiredSystemTokenTrigger = TriggerBuilder.
-            		newTrigger().
-            		withIdentity("ClearExpiredSystemToken").
-            		withSchedule(CronScheduleBuilder.cronSchedule("0 00 12 ? * *")).
-            		build();
+            Trigger trigger = TriggerBuilder.newTrigger().withIdentity("simple").withSchedule(
 
-            scheduler.scheduleJob(clearExpiredSystemTokenJobDetail, clearExpiredSystemTokenTrigger);
+                    CronScheduleBuilder.cronSchedule("0 00 12 ? * *")).build();
 
-
-
-            JobDetail importModifiedAddressesJobDetail = JobBuilder.
-            		newJob(ImportModifiedAddressesJob.class).
-            		build();
-
-            Trigger importModifiedAddressesTrigger = TriggerBuilder.
-            		newTrigger().
-            		withIdentity("ImportModifiedAddresses").
-            		withSchedule(SimpleScheduleBuilder.
-            				simpleSchedule().
-            				withIntervalInSeconds(15).
-            				repeatForever()).
-            		build();
-
-            scheduler.scheduleJob(importModifiedAddressesJobDetail, importModifiedAddressesTrigger);
-
+            scheduler.scheduleJob(jobDetail, trigger);
 
             scheduler.start();
 
         } catch (Exception e) {
 
-        	e.printStackTrace();
-        	
             ctx.log("There was an error scheduling the job.", e);
 
         }

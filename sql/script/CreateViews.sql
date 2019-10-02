@@ -1,1 +1,1 @@
---\i views/SubjectView.sql
+--\i views/CameraView.sql

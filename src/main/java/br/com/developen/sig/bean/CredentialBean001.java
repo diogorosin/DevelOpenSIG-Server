@@ -7,7 +7,9 @@ public class CredentialBean001 {
 
 	private String password;
 
-	private Integer government;
+	private String recaptchaToken;
+
+	private String recaptchaAction;
 
 	public String getLogin() {
 
@@ -33,16 +35,28 @@ public class CredentialBean001 {
 
 	}
 
-	public Integer getGovernment() {
-
-		return government;
-
+	public String getRecaptchaToken() {
+		
+		return recaptchaToken;
+		
 	}
 
-	public void setGovernment(Integer government) {
+	public void setRecaptchaToken(String recaptchaToken) {
+		
+		this.recaptchaToken = recaptchaToken;
+		
+	}
 
-		this.government = government;
+	public String getRecaptchaAction() {
+		
+		return recaptchaAction;
+		
+	}
 
+	public void setRecaptchaAction(String recaptchaAction) {
+		
+		this.recaptchaAction = recaptchaAction;
+		
 	}
 
 }

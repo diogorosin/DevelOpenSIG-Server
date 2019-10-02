@@ -4,38 +4,28 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="\"Country\"")
-@NamedQueries({
-	@NamedQuery(
-			name = Country.FIND_ALL,
-			query = "FROM Country C"
-	)
-})
 public class Country implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final String FIND_ALL = "Country.findAll";
-
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer identifier;
 
-	@NotNull
 	@Size(min=1, max=3)
-	@Column(name="\"acronym\"")	
+	@Column(name="\"acronym\"", nullable=false)	
 	private String acronym;
 
-	@NotNull
 	@Size(min=1, max=50)
-	@Column(name="\"denomination\"")
+	@Column(name="\"denomination\"", nullable=false)
 	private String denomination;
 
 	public Integer getIdentifier() {

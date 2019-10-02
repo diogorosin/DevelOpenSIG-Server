@@ -6,24 +6,18 @@ import java.util.ResourceBundle;
 
 public class I18N {
 
-	public static final String INTERNAL_SERVER_ERROR = "internalServerError";
-	public static final String MALFOMED_AUTHENTICATION_TOKEN_ERROR = "malformedAuthenticationToken";
-	public static final String CONFLICT_ERROR = "conflictError";
-	public static final String NOT_FOUND_ERROR = "notFoundError";
-	public static final String RESOURCE_NOT_ALLOWED = "resourceNotAllowed";
-	public static final String HTTP_AUTHORIZATION_HEADER_NOT_FOUND = "httpAuthorizationHeaderNotFound";
-	public static final String REQUESTED_RANGE_NOT_SATISFIABLE = "requestedRangeNotSatisfiable";
-	public static final String USER_NOT_LINKED_ON_GERNMENT = "userNotLinkedOnGovernment";
-	public static final String USER_NOT_FOUND = "userNotFound";
-	public static final String USER_NOT_ACTIVE = "userNotActive";
-	public static final String USER_NOT_ALLOWED = "userNotAllowed";
-	public static final String USER_ALREADY_LOGGED_INTO_GOVERNMENT = "userAlreadyLoggedIntoGovernment";
-	public static final String GOVERNMENT_NOT_FOUND = "governmentNotFound";
-	public static final String GOVERNMENT_NOT_ACTIVE = "governmentNotActive";	
-	public static final String INVALID_PASSWORD = "invalidPassword";
-	public static final String INVALID_TOKEN = "invalidToken";
+	public static final String INVALID_PASSWORD = "invalidPassword";	
+	public static final String INVALID_RANGE = "invalidRange";
+	public static final String INVALID_TOKEN = "invalidToken";	
 	public static final String EXPIRED_TOKEN = "expiredToken";
-
+	public static final String USER_NOT_ACTIVE = "userNotActive";
+	public static final String USER_NOT_FOUND = "userNotFound";
+	public static final String ORGANIZATION_NOT_FOUND = "organizationNotFound";
+	public static final String HTTP_AUTHORIZATION_HEADER_NOT_FOUND = "httpAuthorizationHeaderNotFound";
+	public static final String RESOURCE_NOT_ALLOWED = "resourceNotAllowed";
+	public static final String RECAPTCHA_VALIDATION_ERROR = "recaptchaValidationError";
+	public static final String INTERNAL_SERVER_ERROR = "internalServerError";
+	
 	private static HashMap<Locale, ResourceBundle> languages;	
 
 	static{

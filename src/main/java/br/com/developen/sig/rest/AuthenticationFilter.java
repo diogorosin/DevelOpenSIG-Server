@@ -24,11 +24,8 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import br.com.developen.sig.bean.ExceptionBean001;
-import br.com.developen.sig.exception.GovernmentNotActiveException;
 import br.com.developen.sig.exception.UnauthorizedException;
 import br.com.developen.sig.exception.UserNotActiveException;
-import br.com.developen.sig.exception.UserNotAllowedException;
-import br.com.developen.sig.orm.Level;
 import br.com.developen.sig.orm.Token;
 import br.com.developen.sig.orm.TokenDAO;
 import br.com.developen.sig.util.HibernateUtil;
@@ -81,90 +78,64 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 						build());
 
 			//VERIFICA A VALIDADE DO TOKEN
-			if (token.getExpire().before(new Date()))
+			if (token.getExpire() != null && token.getExpire().before(new Date()))
 
 				throw new WebApplicationException(Response.status(Status.UNAUTHORIZED).
 						entity(new ExceptionBean001(I18N.get(I18N.EXPIRED_TOKEN))).
 						type(MediaType.APPLICATION_JSON).
 						build());
 
-			//VERIFICA SE TOKEN POSSUI MAIS DE 24H
-//			Calendar calendar = Calendar.getInstance();
+			//VALIDA USUARIO, CASO NAO SEJA UM ROBO
+			if (token.getUser() != null) {
 
-//			calendar.add(Calendar.HOUR, -24);
+				//VERIFICA SE O USUARIO ESTA ATIVO			
+				if (!token.
+						getUser().
+						getActive())
 
-//			if (token.getExpire().before(calendar.getTime()))
-
-//				throw new WebApplicationException(Response.status(Status.UNAUTHORIZED).
-//				entity(new ExceptionBean001(I18N.get(I18N.EXPIRED_TOKEN))).
-//				type(MediaType.APPLICATION_JSON).
-//				build());
-
-			//VERIFICA SE A EMPRESA ESTA ATIVA			
-			if (!token.
-					getSubjectSubject().
-					getIdentifier().
-					getParent().
-					getActive())
-
-				throw new GovernmentNotActiveException();
-
-			//VERIFICA SE O USUARIO ESTA ATIVO			
-			if (!token.
-					getSubjectSubject().
-					getIdentifier().
-					getChild().
-					getActive())
-
-				throw new UserNotActiveException();
-
-			//VERIFICA SE O USUARIO ESTA ATIVO PARA A EMPRESA
-			if (token.getSubjectSubject().
-					getLevel().
-					equals(Level.UNDEFINED)) {
-
-				throw new UserNotAllowedException();
-
-			} else {
-
+					throw new UserNotActiveException();
+	
 				//VERIFICA O NIVEL DE ACESSO
 				Method method = resourceInfo.getResourceMethod();
-
+	
 				if (method.isAnnotationPresent(Authentication.class)){
-
+	
 					Authentication secured = method.getAnnotation(Authentication.class);
-
-					if (secured.level().ordinal() > token.
-							getSubjectSubject().
-							getLevel().
-							ordinal()){
-
+	
+					if (secured.level() > token.
+							getUser().
+							getLevel().getIdentifier()){
+	
 						throw new WebApplicationException(Response.status(Status.FORBIDDEN).
 								entity(new ExceptionBean001(I18N.get(I18N.RESOURCE_NOT_ALLOWED))).
 								type(MediaType.APPLICATION_JSON).
 								build());
-
+	
 					}
-
+	
 				}
+
+				Calendar calendar = Calendar.getInstance();
+
+				calendar.add(Calendar.HOUR, +24);
+
+				token.setExpire(calendar.getTime());
+
+				tokenDAO.update(token);
 
 			}
 
-			Calendar calendar = Calendar.getInstance();
-
-			calendar.add(Calendar.HOUR, +24);
-
-			token.setExpire(calendar.getTime());
-
-			tokenDAO.update(token);
-
-			session.getTransaction().commit();			
+			session.getTransaction().commit();
 
 		} catch (WebApplicationException e) {
 
 			if (session.getTransaction().isActive())
 
 				session.getTransaction().rollback();
+
+			log.error(AuthenticationFilter.class.getSimpleName() + ": " + 
+					e.getMessage(), 
+					e.getCause());
 
 			requestContext.abortWith(e.getResponse());
 

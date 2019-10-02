@@ -1,24 +1,15 @@
 package br.com.developen.sig.bean;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class CityBean001 {
 
-	private Integer identifier;
-
 	private String denomination;
+
+	private Integer ibge;
 	
-	private Integer state;
-
-	public Integer getIdentifier() {
-
-		return identifier;
-
-	}
-
-	public void setIdentifier(Integer identifier) {
-
-		this.identifier = identifier;
-
-	}
+	private Map<Integer, StateBean001> state;
 
 	public String getDenomination() {
 
@@ -32,42 +23,31 @@ public class CityBean001 {
 
 	}
 
-	public Integer getState() {
-		
+	public Map<Integer, StateBean001> getState() {
+
+		if (state==null)
+
+			state = new LinkedHashMap<Integer, StateBean001>();
+
 		return state;
-		
+
 	}
 
-	public void setState(Integer state) {
-		
+	public Integer getIbge() {
+
+		return ibge;
+
+	}
+
+	public void setIbge(Integer ibge) {
+
+		this.ibge = ibge;
+
+	}
+
+	public void setState(Map<Integer, StateBean001> state) {
+
 		this.state = state;
-
-	}
-
-	public int hashCode() {
-		
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
-		return result;
-		
-	}
-
-	public boolean equals(Object obj) {
-		
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CityBean001 other = (CityBean001) obj;
-		if (identifier == null) {
-			if (other.identifier != null)
-				return false;
-		} else if (!identifier.equals(other.identifier))
-			return false;
-		return true;
 
 	}
 
